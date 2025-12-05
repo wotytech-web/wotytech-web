@@ -1,0 +1,9 @@
+{
+  "name": "wotytech-web",
+  "version": "1.0.0",
+  "description": "Sitio web WotyTech con Mercado Pago",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}
+```
