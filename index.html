@@ -1019,6 +1019,67 @@
             }
         });
 
+        // Pagar con Mercado Pago - Usando Netlify Function
+async function pagarMercadoPago() {
+    if (carrito.length === 0) {
+        alert('Tu carrito está vacío');
+        return;
+    }
+    
+    mostrarNotificacion('Creando pago seguro...');
+    
+    try {
+        // Preparar items para enviar al servidor
+        const items = carrito.map(item => ({
+            title: item.nombre,
+            description: item.categoria || 'Producto WotyTech',
+            quantity: item.cantidad,
+            unit_price: item.precio,
+            currency_id: 'ARS'
+        }));
+        
+        console.log('Llamando a la función de Netlify...'); // Debug
+        
+        // Llamar a nuestra función de Netlify
+        const response = await fetch('/.netlify/functions/crear-pago', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ items })
+        });
+        
+        console.log('Respuesta recibida:', response.status); // Debug
+        
+        const data = await response.json();
+        console.log('Data:', data); // Debug
+        
+        if (data.success && data.init_point) {
+            mostrarNotificacion('¡Redirigiendo a Mercado Pago!');
+            // Redirigir al checkout de Mercado Pago
+            setTimeout(() => {
+                window.location.href = data.init_point;
+            }, 500);
+        } else {
+            throw new Error(data.error || 'Error al crear el pago');
+        }
+        
+    } catch (error) {
+        console.error('Error al crear pago:', error);
+        alert('Hubo un problema al procesar el pago. Por favor intenta por WhatsApp.');
+        
+        // Fallback a WhatsApp
+        const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+        let mensaje = `¡Hola! Quiero pagar con Mercado Pago:%0A%0A`;
+        carrito.forEach(item => {
+            mensaje += `• ${item.nombre} x${item.cantidad} - $${(item.precio * item.cantidad).toLocaleString('es-AR')}%0A`;
+        });
+        mensaje += `%0ATotal: $${total.toLocaleString('es-AR')}`;
+        
+        window.open(`https://wa.me/541131721889?text=${mensaje}`, '_blank');
+    }
+}
+
         // Mostrar opción de contacto seleccionada
         function mostrarContacto(opcion) {
             // Ocultar todas las tarjetas
@@ -1041,4 +1102,5 @@
         actualizarCarrito();
     </script>
 </body>
+
 </html>
