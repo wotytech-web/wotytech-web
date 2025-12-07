@@ -30,7 +30,7 @@ exports.handler = async (event, context) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer APP_USR-2519012086152007-111221-6e71aed2c0c16f81de976cafad94a184-2986635467'
+        'Authorization': 'Bearer APP_USR-1998917938999092-111221-98e461316898c4570aa2d1ecefc37dd9-58492901'
       },
       body: JSON.stringify({
         items: items,
@@ -72,4 +72,5 @@ exports.handler = async (event, context) => {
       })
     };
   }
+
 };
