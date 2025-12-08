@@ -1023,510 +1023,442 @@
     </div>
 
     <script>
-        // Configuración de Mercado Pago
-        const mp = new MercadoPago('APP_USR-16e18f72-7c74-4ceb-bc53-b1dd9937686d');
-        const ACCESS_TOKEN = 'APP_USR-2519012086152007-111221-6e71aed2c0c16f81de976cafad94a184-2986635467';
+ // Configuración de Mercado Pago
+    const mp = new MercadoPago('APP_USR-16e18f72-7c74-4ceb-bc53-b1dd9937686d');
+    const ACCESS_TOKEN = 'APP_USR-2519012086152007-111221-6e71aed2c0c16f81de976cafad94a184-2986635467';
 
-        // Base de datos de productos
-        const productos = [
-             { 
-        id: 1, 
-        nombre: 'Memoria RAM DDR4 8GB', 
-        precio: 25000, 
-        imagenes: ['🎯'], // Si solo tiene emoji, dejalo así
-        categoria: 'RAM' 
-    },
-    { 
-        id: 2, 
-        nombre: 'Memoria RAM DDR4 16GB', 
-        precio: 45000, 
-        imagenes: ['🎯'], 
-        categoria: 'RAM' 
-    },
-    { 
-        id: 3, 
-        nombre: 'Disco Rígido 1TB', 
-        precio: 35000, 
-        imagenes: ['💾'], 
-        categoria: 'Almacenamiento' 
-    },
-    { 
-        id: 4, 
-        nombre: 'SSD 240GB', 
-        precio: 28000, 
-        imagenes: ['⚡'], 
-        categoria: 'Almacenamiento' 
-    },
-    { 
-        id: 5, 
-        nombre: 'Kingston Disco Ssd 960gb 1tb', 
-        precio: 210000, 
-        imagenes: [
-            'https://i.ibb.co/BVzqYg6C/HD.jpg',
-            'https://i.ibb.co/TByFGRCY/HD00.jpg',
-            'https://i.ibb.co/ZRxXRXBT/HD01.jpg',
-           
-        ], 
-        categoria: 'Almacenamiento',
-        esImagen: true 
-    },
-    { 
-        id: 6, 
-        nombre: 'Motherboard Intel', 
-        precio: 85000, 
-        imagenes: ['🔌'], 
-        categoria: 'Componentes' 
-    },
-    { 
-        id: 7, 
-        nombre: 'Motherboard AMD', 
-        precio: 78000, 
-        imagenes: ['🔌'], 
-        categoria: 'Componentes' 
-    },
-    { 
-        id: 8, 
-        nombre: 'Notebook Básica', 
-        precio: 450000, 
-        imagenes: ['💻'], 
-        categoria: 'Notebooks' 
-    },
-    { 
-        id: 9, 
-        nombre: 'Notebook Gamer', 
-        precio: 850000, 
-        imagenes: ['🎮'], 
-        categoria: 'Notebooks' 
-    },
-    { 
-        id: 10, 
-        nombre: 'Mouse Gamer RGB', 
-        precio: 18000, 
-        imagenes: ['🖱️'], 
-        categoria: 'Periféricos' 
-    },
-    { 
-        id: 11, 
-        nombre: 'Teclado Gamer Mecánico', 
-        precio: 45000, 
-        imagenes: ['⌨️'], 
-        categoria: 'Periféricos' 
-    },
-    { 
-        id: 12, 
-        nombre: 'Kit Teclado + Mouse Gamer', 
-        precio: 55000, 
-        imagenes: ['🎮'], 
-        categoria: 'Periféricos' 
-    }
-];
+    // Base de datos de productos
+    const productos = [
+        { 
+            id: 1, 
+            nombre: 'Memoria RAM DDR4 8GB', 
+            precio: 25000, 
+            imagenes: ['🎯'],
+            categoria: 'RAM' 
+        },
+        { 
+            id: 2, 
+            nombre: 'Memoria RAM DDR4 16GB', 
+            precio: 45000, 
+            imagenes: ['🎯'], 
+            categoria: 'RAM' 
+        },
+        { 
+            id: 3, 
+            nombre: 'Disco Rígido 1TB', 
+            precio: 35000, 
+            imagenes: ['💾'], 
+            categoria: 'Almacenamiento' 
+        },
+        { 
+            id: 4, 
+            nombre: 'SSD 240GB', 
+            precio: 28000, 
+            imagenes: ['⚡'], 
+            categoria: 'Almacenamiento' 
+        },
+        { 
+            id: 5, 
+            nombre: 'Kingston Disco Ssd 960gb 1tb', 
+            precio: 210000, 
+            imagenes: [
+                'https://i.ibb.co/BVzqYg6C/HD.jpg',
+                'https://i.ibb.co/TByFGRCY/HD00.jpg',
+                'https://i.ibb.co/ZRxXRXBT/HD01.jpg'
+            ], 
+            categoria: 'Almacenamiento',
+            esImagen: true 
+        },
+        { 
+            id: 6, 
+            nombre: 'Motherboard Intel', 
+            precio: 85000, 
+            imagenes: ['🔌'], 
+            categoria: 'Componentes' 
+        },
+        { 
+            id: 7, 
+            nombre: 'Motherboard AMD', 
+            precio: 78000, 
+            imagenes: ['🔌'], 
+            categoria: 'Componentes' 
+        },
+        { 
+            id: 8, 
+            nombre: 'Notebook Básica', 
+            precio: 450000, 
+            imagenes: ['💻'], 
+            categoria: 'Notebooks' 
+        },
+        { 
+            id: 9, 
+            nombre: 'Notebook Gamer', 
+            precio: 850000, 
+            imagenes: ['🎮'], 
+            categoria: 'Notebooks' 
+        },
+        { 
+            id: 10, 
+            nombre: 'Mouse Gamer RGB', 
+            precio: 18000, 
+            imagenes: ['🖱️'], 
+            categoria: 'Periféricos' 
+        },
+        { 
+            id: 11, 
+            nombre: 'Teclado Gamer Mecánico', 
+            precio: 45000, 
+            imagenes: ['⌨️'], 
+            categoria: 'Periféricos' 
+        },
+        { 
+            id: 12, 
+            nombre: 'Kit Teclado + Mouse Gamer', 
+            precio: 55000, 
+            imagenes: ['🎮'], 
+            categoria: 'Periféricos' 
+        }
+    ];
 
-        let carrito = [];
+    let carrito = [];
+    let galeriaIndices = {};
 
-        // Renderizar productos
-       function renderizarProductos() {
-    const container = document.getElementById('productosContainer');
-    container.innerHTML = productos.map(prod => {
-        const esImagen = prod.esImagen || (prod.imagenes && prod.imagenes[0] && prod.imagenes[0].startsWith('http'));
-        const tieneVariasImagenes = prod.imagenes && prod.imagenes.length > 1;
-        
-        return `
-            <div class="producto-card">
-                <div class="producto-galeria" id="galeria-${prod.id}">
-                    ${esImagen ? 
-                        `<img src="${prod.imagenes[0]}" 
-                             alt="${prod.nombre}" 
-                             class="galeria-imagen-principal" 
-                             onclick="abrirLightbox(${prod.id}, 0)"
-                             data-producto="${prod.id}"
-                             data-indice="0">` :
-                        `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
-                            ${prod.imagenes[0]}
-                        </div>`
-                    }
+    // Inicializar índices de galerías
+    productos.forEach(prod => {
+        galeriaIndices[prod.id] = 0;
+    });
+
+    // Renderizar productos
+    function renderizarProductos() {
+        const container = document.getElementById('productosContainer');
+        container.innerHTML = productos.map(prod => {
+            const esImagen = prod.esImagen || (prod.imagenes && prod.imagenes[0] && prod.imagenes[0].startsWith('http'));
+            const tieneVariasImagenes = prod.imagenes && prod.imagenes.length > 1;
+            
+            return `
+                <div class="producto-card">
+                    <div class="producto-galeria" id="galeria-${prod.id}">
+                        ${esImagen ? 
+                            `<img src="${prod.imagenes[0]}" 
+                                 alt="${prod.nombre}" 
+                                 class="galeria-imagen-principal" 
+                                 onclick="abrirLightbox(${prod.id}, 0)"
+                                 data-producto="${prod.id}"
+                                 data-indice="0">` :
+                            `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                                ${prod.imagenes[0]}
+                            </div>`
+                        }
+                        ${tieneVariasImagenes && esImagen ? `
+                            <div class="galeria-flechas">
+                                <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, -1)">‹</button>
+                                <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, 1)">›</button>
+                            </div>
+                        ` : ''}
+                    </div>
                     ${tieneVariasImagenes && esImagen ? `
-                        <div class="galeria-flechas">
-                            <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, -1)">‹</button>
-                            <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, 1)">›</button>
+                        <div class="galeria-miniaturas">
+                            ${prod.imagenes.map((img, idx) => `
+                                <img src="${img}" 
+                                     class="galeria-miniatura ${idx === 0 ? 'active' : ''}" 
+                                     onclick="seleccionarImagenGaleria(${prod.id}, ${idx})"
+                                     data-producto="${prod.id}"
+                                     data-indice="${idx}">
+                            `).join('')}
                         </div>
                     ` : ''}
-                </div>
-                ${tieneVariasImagenes && esImagen ? `
-                    <div class="galeria-miniaturas">
-                        ${prod.imagenes.map((img, idx) => `
-                            <img src="${img}" 
-                                 class="galeria-miniatura ${idx === 0 ? 'active' : ''}" 
-                                 onclick="seleccionarImagenGaleria(${prod.id}, ${idx})"
-                                 data-producto="${prod.id}"
-                                 data-indice="${idx}">
-                        `).join('')}
-                    </div>
-                ` : ''}
-                <div class="producto-info">
-                    <h3>${prod.nombre}</h3>
-                    <p>${prod.categoria}</p>
-                    <div class="producto-precio">$${prod.precio.toLocaleString('es-AR')}</div>
-                    <button class="btn btn-primary" onclick="agregarAlCarrito(${prod.id})">Agregar al Carrito</button>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
-                    </div>
                     <div class="producto-info">
                         <h3>${prod.nombre}</h3>
                         <p>${prod.categoria}</p>
-                        <div class="producto-precio">${prod.precio.toLocaleString('es-AR')}</div>
+                        <div class="producto-precio">$${prod.precio.toLocaleString('es-AR')}</div>
                         <button class="btn btn-primary" onclick="agregarAlCarrito(${prod.id})">Agregar al Carrito</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Galería de imágenes
+    function cambiarImagenGaleria(productoId, direccion) {
+        const producto = productos.find(p => p.id === productoId);
+        if (!producto || !producto.imagenes || producto.imagenes.length <= 1) return;
+        
+        galeriaIndices[productoId] = (galeriaIndices[productoId] + direccion + producto.imagenes.length) % producto.imagenes.length;
+        
+        const img = document.querySelector(`img.galeria-imagen-principal[data-producto="${productoId}"]`);
+        if (img) {
+            img.src = producto.imagenes[galeriaIndices[productoId]];
+            img.dataset.indice = galeriaIndices[productoId];
+        }
+        
+        document.querySelectorAll(`.galeria-miniatura[data-producto="${productoId}"]`).forEach((mini, idx) => {
+            mini.classList.toggle('active', idx === galeriaIndices[productoId]);
+        });
+    }
+
+    function seleccionarImagenGaleria(productoId, indice) {
+        const producto = productos.find(p => p.id === productoId);
+        if (!producto || !producto.imagenes) return;
+        
+        galeriaIndices[productoId] = indice;
+        
+        const img = document.querySelector(`img.galeria-imagen-principal[data-producto="${productoId}"]`);
+        if (img) {
+            img.src = producto.imagenes[indice];
+            img.dataset.indice = indice;
+        }
+        
+        document.querySelectorAll(`.galeria-miniatura[data-producto="${productoId}"]`).forEach((mini, idx) => {
+            mini.classList.toggle('active', idx === indice);
+        });
+    }
+
+    // Lightbox
+    let lightboxProductoId = null;
+    let lightboxIndice = 0;
+
+    function abrirLightbox(productoId, indice) {
+        const producto = productos.find(p => p.id === productoId);
+        if (!producto || !producto.imagenes) return;
+        
+        lightboxProductoId = productoId;
+        lightboxIndice = indice;
+        
+        let lightbox = document.getElementById('lightbox');
+        if (!lightbox) {
+            lightbox = document.createElement('div');
+            lightbox.id = 'lightbox';
+            lightbox.className = 'lightbox';
+            lightbox.innerHTML = `
+                <button class="lightbox-cerrar" onclick="cerrarLightbox()">×</button>
+                <button class="lightbox-flecha lightbox-flecha-izq" onclick="navegarLightbox(-1)">‹</button>
+                <div class="lightbox-contenido">
+                    <img class="lightbox-imagen" src="" alt="">
+                </div>
+                <button class="lightbox-flecha lightbox-flecha-der" onclick="navegarLightbox(1)">›</button>
+                <div class="lightbox-contador"></div>
+            `;
+            document.body.appendChild(lightbox);
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') cerrarLightbox();
+                if (e.key === 'ArrowLeft') navegarLightbox(-1);
+                if (e.key === 'ArrowRight') navegarLightbox(1);
+            });
+            
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) cerrarLightbox();
+            });
+        }
+        
+        actualizarLightbox();
+        lightbox.classList.add('active');
+    }
+
+    function cerrarLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox) lightbox.classList.remove('active');
+    }
+
+    function navegarLightbox(direccion) {
+        const producto = productos.find(p => p.id === lightboxProductoId);
+        if (!producto || !producto.imagenes) return;
+        
+        lightboxIndice = (lightboxIndice + direccion + producto.imagenes.length) % producto.imagenes.length;
+        actualizarLightbox();
+    }
+
+    function actualizarLightbox() {
+        const producto = productos.find(p => p.id === lightboxProductoId);
+        if (!producto || !producto.imagenes) return;
+        
+        const lightbox = document.getElementById('lightbox');
+        const img = lightbox.querySelector('.lightbox-imagen');
+        const contador = lightbox.querySelector('.lightbox-contador');
+        
+        img.src = producto.imagenes[lightboxIndice];
+        img.alt = producto.nombre;
+        
+        if (producto.imagenes.length > 1) {
+            contador.textContent = `${lightboxIndice + 1} / ${producto.imagenes.length}`;
+            lightbox.querySelector('.lightbox-flecha-izq').style.display = 'block';
+            lightbox.querySelector('.lightbox-flecha-der').style.display = 'block';
+        } else {
+            contador.textContent = '';
+            lightbox.querySelector('.lightbox-flecha-izq').style.display = 'none';
+            lightbox.querySelector('.lightbox-flecha-der').style.display = 'none';
+        }
+    }
+
+    // Carrito
+    function agregarAlCarrito(id) {
+        const producto = productos.find(p => p.id === id);
+        const itemExistente = carrito.find(item => item.id === id);
+        
+        if (itemExistente) {
+            itemExistente.cantidad++;
+        } else {
+            carrito.push({ ...producto, cantidad: 1 });
+        }
+        
+        actualizarCarrito();
+        mostrarNotificacion('Producto agregado al carrito');
+    }
+
+    function actualizarCarrito() {
+        const count = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+        document.getElementById('carritoCount').textContent = count;
+        
+        const itemsContainer = document.getElementById('carritoItems');
+        if (carrito.length === 0) {
+            itemsContainer.innerHTML = '<p style="text-align: center; padding: 2rem;">Tu carrito está vacío</p>';
+        } else {
+            itemsContainer.innerHTML = carrito.map(item => `
+                <div class="carrito-item">
+                    <div class="carrito-item-info">
+                        <strong>${item.nombre}</strong>
+                        <p>$${item.precio.toLocaleString('es-AR')}</p>
+                    </div>
+                    <div class="carrito-item-acciones">
+                        <button class="btn-cantidad" onclick="cambiarCantidad(${item.id}, -1)">-</button>
+                        <span style="font-weight: bold;">${item.cantidad}</span>
+                        <button class="btn-cantidad" onclick="cambiarCantidad(${item.id}, 1)">+</button>
+                        <button class="btn-cantidad" onclick="eliminarDelCarrito(${item.id})" style="background: #ff3838;">🗑️</button>
                     </div>
                 </div>
             `).join('');
         }
-
-        // Agregar al carrito
-        function agregarAlCarrito(id) {
-            const producto = productos.find(p => p.id === id);
-            const itemExistente = carrito.find(item => item.id === id);
-            
-            if (itemExistente) {
-                itemExistente.cantidad++;
-            } else {
-                carrito.push({ ...producto, cantidad: 1 });
-            }
-            
-            actualizarCarrito();
-            mostrarNotificacion('Producto agregado al carrito');
-        }
-
-        // Actualizar carrito
-        function actualizarCarrito() {
-            const count = carrito.reduce((sum, item) => sum + item.cantidad, 0);
-            document.getElementById('carritoCount').textContent = count;
-            
-            const itemsContainer = document.getElementById('carritoItems');
-            if (carrito.length === 0) {
-                itemsContainer.innerHTML = '<p style="text-align: center; padding: 2rem;">Tu carrito está vacío</p>';
-            } else {
-                itemsContainer.innerHTML = carrito.map(item => `
-                    <div class="carrito-item">
-                        <div class="carrito-item-info">
-                            <strong>${item.nombre}</strong>
-                            <p>$${item.precio.toLocaleString('es-AR')}</p>
-                        </div>
-                        <div class="carrito-item-acciones">
-                            <button class="btn-cantidad" onclick="cambiarCantidad(${item.id}, -1)">-</button>
-                            <span style="font-weight: bold;">${item.cantidad}</span>
-                            <button class="btn-cantidad" onclick="cambiarCantidad(${item.id}, 1)">+</button>
-                            <button class="btn-cantidad" onclick="eliminarDelCarrito(${item.id})" style="background: #ff3838;">🗑️</button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-            
-            const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-            document.getElementById('carritoTotal').textContent = total.toLocaleString('es-AR');
-        }
-
-        // Cambiar cantidad
-        function cambiarCantidad(id, cambio) {
-            const item = carrito.find(i => i.id === id);
-            if (item) {
-                item.cantidad += cambio;
-                if (item.cantidad <= 0) {
-                    eliminarDelCarrito(id);
-                } else {
-                    actualizarCarrito();
-                }
-            }
-        }
-
-        // Eliminar del carrito
-        function eliminarDelCarrito(id) {
-            carrito = carrito.filter(item => item.id !== id);
-            actualizarCarrito();
-        }
-
-        // Toggle carrito modal
-        function toggleCarrito() {
-            document.getElementById('carritoModal').classList.toggle('active');
-        }
-
-        // Pagar con Mercado Pago
-        function pagarMercadoPago() {
-            if (carrito.length === 0) {
-                alert('Tu carrito está vacío');
-                return;
-            }
-            
-            let mensaje = '¡Hola! Quiero realizar el pago de los siguientes productos:%0A%0A';
-            carrito.forEach(item => {
-                mensaje += `• ${item.nombre} x${item.cantidad} - ${(item.precio * item.cantidad).toLocaleString('es-AR')}%0A`;
-            });
-            
-            const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-            mensaje += `%0ATotal: ${total.toLocaleString('es-AR')}%0A%0APor favor envíame el link de Mercado Pago para realizar el pago.`;
-            
-            // Enviamos mensaje a WhatsApp solicitando el link de MP
-            window.open(`https://wa.me/541131721889?text=${mensaje}`, '_blank');
-            
-            mostrarNotificacion('Solicitando link de Mercado Pago...');
-        }
-
-        // Finalizar compra
-        function finalizarCompra() {
-            if (carrito.length === 0) {
-                alert('Tu carrito está vacío');
-                return;
-            }
-            
-            let mensaje = '¡Hola! Quiero comprar los siguientes productos:%0A%0A';
-            carrito.forEach(item => {
-                mensaje += `• ${item.nombre} x${item.cantidad} - ${(item.precio * item.cantidad).toLocaleString('es-AR')}%0A`;
-            });
-            
-            const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-            mensaje += `%0ATotal: ${total.toLocaleString('es-AR')}`;
-            
-            window.open(`https://wa.me/541131721889?text=${mensaje}`, '_blank');
-        }
-
-        // Notificación
-        function mostrarNotificacion(texto) {
-            const notif = document.createElement('div');
-            notif.textContent = texto;
-            notif.style.cssText = 'position: fixed; top: 100px; right: 30px; background: #10b981; color: white; padding: 1rem 2rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 3000; animation: fadeInUp 0.5s;';
-            document.body.appendChild(notif);
-            setTimeout(() => notif.remove(), 3000);
-        }
-
-        // Toggle dropdown menu
-        function toggleDropdown(event) {
-            event.preventDefault();
-            const dropdown = document.getElementById('dropdownContacto');
-            dropdown.classList.toggle('active');
-        }
-
-        // Cerrar dropdown al hacer click fuera
-        document.addEventListener('click', function(event) {
-            const dropdown = document.getElementById('dropdownContacto');
-            const navItem = event.target.closest('.nav-item');
-            
-            if (!navItem && dropdown) {
-                dropdown.classList.remove('active');
-            }
-        });
-
-        // Pagar con Mercado Pago - Usando Netlify Function
-async function pagarMercadoPago() {
-    if (carrito.length === 0) {
-        alert('Tu carrito está vacío');
-        return;
-    }
-    
-    mostrarNotificacion('Creando pago seguro...');
-    
-    try {
-        // Preparar items para enviar al servidor
-        const items = carrito.map(item => ({
-            title: item.nombre,
-            description: item.categoria || 'Producto WotyTech',
-            quantity: item.cantidad,
-            unit_price: item.precio,
-            currency_id: 'ARS'
-        }));
         
-        console.log('Llamando a la función de Netlify...'); // Debug
-        
-        // Llamar a nuestra función de Netlify
-        const response = await fetch('/.netlify/functions/crear-pago', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ items })
-        });
-        
-        console.log('Respuesta recibida:', response.status); // Debug
-        
-        const data = await response.json();
-        console.log('Data:', data); // Debug
-        
-        if (data.success && data.init_point) {
-            mostrarNotificacion('¡Redirigiendo a Mercado Pago!');
-            // Redirigir al checkout de Mercado Pago
-            setTimeout(() => {
-                window.location.href = data.init_point;
-            }, 500);
-        } else {
-            throw new Error(data.error || 'Error al crear el pago');
-        }
-        
-    } catch (error) {
-        console.error('Error al crear pago:', error);
-        alert('Hubo un problema al procesar el pago. Por favor intenta por WhatsApp.');
-        
-        // Fallback a WhatsApp
         const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
-        let mensaje = `¡Hola! Quiero pagar con Mercado Pago:%0A%0A`;
+        document.getElementById('carritoTotal').textContent = total.toLocaleString('es-AR');
+    }
+
+    function cambiarCantidad(id, cambio) {
+        const item = carrito.find(i => i.id === id);
+        if (item) {
+            item.cantidad += cambio;
+            if (item.cantidad <= 0) {
+                eliminarDelCarrito(id);
+            } else {
+                actualizarCarrito();
+            }
+        }
+    }
+
+    function eliminarDelCarrito(id) {
+        carrito = carrito.filter(item => item.id !== id);
+        actualizarCarrito();
+    }
+
+    function toggleCarrito() {
+        document.getElementById('carritoModal').classList.toggle('active');
+    }
+
+    // Pagar con Mercado Pago
+    async function pagarMercadoPago() {
+        if (carrito.length === 0) {
+            alert('Tu carrito está vacío');
+            return;
+        }
+        
+        mostrarNotificacion('Creando pago seguro...');
+        
+        try {
+            const items = carrito.map(item => ({
+                title: item.nombre,
+                description: item.categoria || 'Producto WotyTech',
+                quantity: item.cantidad,
+                unit_price: item.precio,
+                currency_id: 'ARS'
+            }));
+            
+            console.log('Llamando a la función de Netlify...');
+            
+            const response = await fetch('/.netlify/functions/crear-pago', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ items })
+            });
+            
+            console.log('Respuesta recibida:', response.status);
+            
+            const data = await response.json();
+            console.log('Data:', data);
+            
+            if (data.success && data.init_point) {
+                mostrarNotificacion('¡Redirigiendo a Mercado Pago!');
+                setTimeout(() => {
+                    window.location.href = data.init_point;
+                }, 500);
+            } else {
+                throw new Error(data.error || 'Error al crear el pago');
+            }
+            
+        } catch (error) {
+            console.error('Error al crear pago:', error);
+            alert('Hubo un problema al procesar el pago. Por favor intenta por WhatsApp.');
+            
+            const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+            let mensaje = `¡Hola! Quiero pagar con Mercado Pago:%0A%0A`;
+            carrito.forEach(item => {
+                mensaje += `• ${item.nombre} x${item.cantidad} - $${(item.precio * item.cantidad).toLocaleString('es-AR')}%0A`;
+            });
+            mensaje += `%0ATotal: $${total.toLocaleString('es-AR')}`;
+            
+            window.open(`https://wa.me/541131721889?text=${mensaje}`, '_blank');
+        }
+    }
+
+    function finalizarCompra() {
+        if (carrito.length === 0) {
+            alert('Tu carrito está vacío');
+            return;
+        }
+        
+        let mensaje = '¡Hola! Quiero comprar los siguientes productos:%0A%0A';
         carrito.forEach(item => {
             mensaje += `• ${item.nombre} x${item.cantidad} - $${(item.precio * item.cantidad).toLocaleString('es-AR')}%0A`;
         });
+        
+        const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
         mensaje += `%0ATotal: $${total.toLocaleString('es-AR')}`;
         
         window.open(`https://wa.me/541131721889?text=${mensaje}`, '_blank');
     }
-}
 
-        // Mostrar opción de contacto seleccionada
-        function mostrarContacto(opcion) {
-            // Ocultar todas las tarjetas
-            document.querySelectorAll('.contacto-info-card').forEach(card => {
-                card.classList.remove('active');
-            });
+    function mostrarNotificacion(texto) {
+        const notif = document.createElement('div');
+        notif.textContent = texto;
+        notif.style.cssText = 'position: fixed; top: 100px; right: 30px; background: #10b981; color: white; padding: 1rem 2rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 3000; animation: fadeInUp 0.5s;';
+        document.body.appendChild(notif);
+        setTimeout(() => notif.remove(), 3000);
+    }
 
-            // Mostrar la tarjeta seleccionada
-            if (opcion) {
-                const card = document.getElementById(`contacto-${opcion}`);
-                if (card) {
-                    card.classList.add('active');
-                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }
+    function toggleDropdown(event) {
+        event.preventDefault();
+        const dropdown = document.getElementById('dropdownContacto');
+        dropdown.classList.toggle('active');
+    }
+
+    document.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('dropdownContacto');
+        const navItem = event.target.closest('.nav-item');
+        
+        if (!navItem && dropdown) {
+            dropdown.classList.remove('active');
         }
-
-        // Inicializar
-        renderizarProductos();
-
-        let galeriaIndices = {};
-
-// Inicializar índices de galerías
-productos.forEach(prod => {
-    galeriaIndices[prod.id] = 0;
-});
-
-function cambiarImagenGaleria(productoId, direccion) {
-    const producto = productos.find(p => p.id === productoId);
-    if (!producto || !producto.imagenes || producto.imagenes.length <= 1) return;
-    
-    galeriaIndices[productoId] = (galeriaIndices[productoId] + direccion + producto.imagenes.length) % producto.imagenes.length;
-    
-    const img = document.querySelector(`img.galeria-imagen-principal[data-producto="${productoId}"]`);
-    if (img) {
-        img.src = producto.imagenes[galeriaIndices[productoId]];
-        img.dataset.indice = galeriaIndices[productoId];
-    }
-    
-    // Actualizar miniaturas activas
-    document.querySelectorAll(`.galeria-miniatura[data-producto="${productoId}"]`).forEach((mini, idx) => {
-        mini.classList.toggle('active', idx === galeriaIndices[productoId]);
     });
-}
 
-function seleccionarImagenGaleria(productoId, indice) {
-    const producto = productos.find(p => p.id === productoId);
-    if (!producto || !producto.imagenes) return;
-    
-    galeriaIndices[productoId] = indice;
-    
-    const img = document.querySelector(`img.galeria-imagen-principal[data-producto="${productoId}"]`);
-    if (img) {
-        img.src = producto.imagenes[indice];
-        img.dataset.indice = indice;
-    }
-    
-    // Actualizar miniaturas activas
-    document.querySelectorAll(`.galeria-miniatura[data-producto="${productoId}"]`).forEach((mini, idx) => {
-        mini.classList.toggle('active', idx === indice);
-    });
-}
-
-// Lightbox para ver imágenes en grande
-let lightboxProductoId = null;
-let lightboxIndice = 0;
-
-function abrirLightbox(productoId, indice) {
-    const producto = productos.find(p => p.id === productoId);
-    if (!producto || !producto.imagenes) return;
-    
-    lightboxProductoId = productoId;
-    lightboxIndice = indice;
-    
-    // Crear lightbox si no existe
-    let lightbox = document.getElementById('lightbox');
-    if (!lightbox) {
-        lightbox = document.createElement('div');
-        lightbox.id = 'lightbox';
-        lightbox.className = 'lightbox';
-        lightbox.innerHTML = `
-            <button class="lightbox-cerrar" onclick="cerrarLightbox()">×</button>
-            <button class="lightbox-flecha lightbox-flecha-izq" onclick="navegarLightbox(-1)">‹</button>
-            <div class="lightbox-contenido">
-                <img class="lightbox-imagen" src="" alt="">
-            </div>
-            <button class="lightbox-flecha lightbox-flecha-der" onclick="navegarLightbox(1)">›</button>
-            <div class="lightbox-contador"></div>
-        `;
-        document.body.appendChild(lightbox);
-        
-        // Cerrar con ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') cerrarLightbox();
-            if (e.key === 'ArrowLeft') navegarLightbox(-1);
-            if (e.key === 'ArrowRight') navegarLightbox(1);
-        });
-        
-        // Cerrar al hacer click en el fondo
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) cerrarLightbox();
-        });
-    }
-    
-    actualizarLightbox();
-    lightbox.classList.add('active');
-}
-
-function cerrarLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    if (lightbox) {
-        lightbox.classList.remove('active');
-    }
-}
-
-function navegarLightbox(direccion) {
-    const producto = productos.find(p => p.id === lightboxProductoId);
-    if (!producto || !producto.imagenes) return;
-    
-    lightboxIndice = (lightboxIndice + direccion + producto.imagenes.length) % producto.imagenes.length;
-    actualizarLightbox();
-}
-
-function actualizarLightbox() {
-    const producto = productos.find(p => p.id === lightboxProductoId);
-    if (!producto || !producto.imagenes) return;
-    
-    const lightbox = document.getElementById('lightbox');
-    const img = lightbox.querySelector('.lightbox-imagen');
-    const contador = lightbox.querySelector('.lightbox-contador');
-    
-    img.src = producto.imagenes[lightboxIndice];
-    img.alt = producto.nombre;
-    
-    if (producto.imagenes.length > 1) {
-        contador.textContent = `${lightboxIndice + 1} / ${producto.imagenes.length}`;
-        lightbox.querySelector('.lightbox-flecha-izq').style.display = 'block';
-        lightbox.querySelector('.lightbox-flecha-der').style.display = 'block';
-    } else {
-        contador.textContent = '';
-        lightbox.querySelector('.lightbox-flecha-izq').style.display = 'none';
-        lightbox.querySelector('.lightbox-flecha-der').style.display = 'none';
-    }
-}
-        
-        actualizarCarrito();
+    // Inicializar
+    renderizarProductos();
+    actualizarCarrito();
     </script>
 </body>
 
 </html>
+
 
 
 
