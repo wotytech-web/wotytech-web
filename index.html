@@ -1221,8 +1221,8 @@
         const tieneVariasImagenes = prod.imagenes && prod.imagenes.length > 1;
         const sinStock = prod.stock <= 0;
         const stockBajo = prod.stock > 0 && prod.stock <= 3;
-            
-            return `
+        
+        return `
             <div class="producto-card ${sinStock ? 'producto-agotado' : ''}">
                 <div class="producto-galeria" id="galeria-${prod.id}">
                     ${esImagen ? 
@@ -1278,7 +1278,6 @@
         `;
     }).join('');
 }
-
     // Galería de imágenes
     function cambiarImagenGaleria(productoId, direccion) {
         const producto = productos.find(p => p.id === productoId);
@@ -1392,20 +1391,6 @@
     }
 
     // Carrito
-    function agregarAlCarrito(id) {
-        const producto = productos.find(p => p.id === id);
-        const itemExistente = carrito.find(item => item.id === id);
-        
-        if (itemExistente) {
-            itemExistente.cantidad++;
-        } else {
-            carrito.push({ ...producto, cantidad: 1 });
-        }
-        
-        actualizarCarrito();
-        mostrarNotificacion('Producto agregado al carrito');
-    }
-
     function agregarAlCarrito(id) {
     const producto = productos.find(p => p.id === id);
     
