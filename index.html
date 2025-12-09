@@ -389,42 +389,63 @@
 
         /* Carrito */
         .carrito-flotante {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #667eea;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
-            transition: transform 0.3s;
-        }
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #667eea;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+    transition: transform 0.3s;
+    z-index: 10000; /* MUY IMPORTANTE - Aumentado de 1000 a 10000 */
+}
 
-        .carrito-flotante:hover {
-            transform: scale(1.1);
-        }
+.carrito-flotante:hover {
+    transform: scale(1.1);
+}
 
-        .carrito-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: #ff3838;
-            color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
+.carrito-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff3838;
+    color: white;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .carrito-flotante {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+        z-index: 10000; /* Asegurar que esté por encima de todo */
+    }
+
+    .carrito-badge {
+        width: 22px;
+        height: 22px;
+        font-size: 0.7rem;
+        top: -3px;
+        right: -3px;
+    }
+}
 
         /* Modal Carrito */
         .modal {
@@ -1613,6 +1634,7 @@ function cambiarCantidad(id, cambio) {
 </body>
 
 </html>
+
 
 
 
