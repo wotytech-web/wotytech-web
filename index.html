@@ -871,9 +871,83 @@
     font-weight: bold;
 }
 
+/* Stock badges en las imágenes */
+.badge-agotado {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff3838;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(255, 56, 56, 0.4);
+    z-index: 10;
+    border: 2px solid #000;
+}
 
+.badge-stock-bajo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ffa500;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    box-shadow: 0 4px 10px rgba(255, 165, 0, 0.4);
+    z-index: 10;
+    border: 2px solid #000;
+}
 
-        
+/* Información de stock */
+.producto-stock {
+    margin: 0.5rem 0;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.stock-disponible {
+    color: #10b981;
+}
+
+.stock-bajo {
+    color: #ffa500;
+    animation: parpadeo 1.5s infinite;
+}
+
+.stock-agotado {
+    color: #ff3838;
+}
+
+/* Producto agotado con filtro */
+.producto-agotado .producto-galeria {
+    opacity: 0.6;
+    filter: grayscale(50%);
+}
+
+/* Botón deshabilitado */
+.btn:disabled {
+    background: #999 !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn:disabled:hover {
+    transform: none;
+    box-shadow: 4px 4px 0 #000;
+}
+
+/* Animación de parpadeo para stock bajo */
+@keyframes parpadeo {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+    
     </style>
 </head>
 <body>
@@ -1472,6 +1546,7 @@
 </body>
 
 </html>
+
 
 
 
