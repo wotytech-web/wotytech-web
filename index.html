@@ -1462,17 +1462,28 @@
         document.getElementById('carritoTotal').textContent = total.toLocaleString('es-AR');
     }
 
-    function cambiarCantidad(id, cambio) {
-        const item = carrito.find(i => i.id === id);
-        if (item) {
-            item.cantidad += cambio;
-            if (item.cantidad <= 0) {
-                eliminarDelCarrito(id);
-            } else {
-                actualizarCarrito();
-            }
+function cambiarCantidad(id, cambio) {
+    const item = carrito.find(i => i.id === id);
+    const producto = productos.find(p => p.id === id);
+    
+    if (item) {
+        const nuevaCantidad = item.cantidad + cambio;
+        
+        // Verificar stock al aumentar
+        if (cambio > 0 && nuevaCantidad > producto.stock) {
+            mostrarNotificacion(`⚠️ Stock máximo: ${producto.stock} unidades`);
+            return;
+        }
+        
+        item.cantidad = nuevaCantidad;
+        
+        if (item.cantidad <= 0) {
+            eliminarDelCarrito(id);
+        } else {
+            actualizarCarrito();
         }
     }
+}
 
     function eliminarDelCarrito(id) {
         carrito = carrito.filter(item => item.id !== id);
@@ -1587,6 +1598,7 @@
 </body>
 
 </html>
+
 
 
 
