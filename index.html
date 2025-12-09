@@ -871,80 +871,7 @@
     font-weight: bold;
 }
 
-.badge-agotado {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ff3838;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 14px;
-    box-shadow: 0 4px 10px rgba(255, 56, 56, 0.4);
-    z-index: 10;
-    border: 2px solid #000;
-}
 
-.badge-stock-bajo {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ffa500;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 12px;
-    box-shadow: 0 4px 10px rgba(255, 165, 0, 0.4);
-    z-index: 10;
-    border: 2px solid #000;
-}
-
-/* Información de stock */
-.producto-stock {
-    margin: 0.5rem 0;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.stock-disponible {
-    color: #10b981;
-}
-
-.stock-bajo {
-    color: #ffa500;
-    animation: parpadeo 1.5s infinite;
-}
-
-.stock-agotado {
-    color: #ff3838;
-}
-
-/* Producto agotado con filtro */
-.producto-agotado .producto-galeria {
-    opacity: 0.6;
-    filter: grayscale(50%);
-}
-
-/* Botón deshabilitado */
-.btn:disabled {
-    background: #999 !important;
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-.btn:disabled:hover {
-    transform: none;
-    box-shadow: 4px 4px 0 #000;
-}
-
-/* Animación de parpadeo para stock bajo */
-@keyframes parpadeo {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
 
         
     </style>
@@ -1102,108 +1029,110 @@
 
     // Base de datos de productos
     const productos = [
-    { 
-        id: 1, 
-        nombre: 'Memoria RAM DDR4 8GB', 
-        precio: 25000, 
-        imagenes: ['🎯'],
-        categoria: 'RAM',
-        stock: 10
-    },
-    { 
-        id: 2, 
-        nombre: 'Memoria RAM DDR4 16GB', 
-        precio: 45000, 
-        imagenes: ['🎯'], 
-        categoria: 'RAM',
-        stock: 10
-    },
-    { 
-        id: 3, 
-        nombre: 'Disco Rígido 1TB', 
-        precio: 35000, 
-        imagenes: ['💾'], 
-        categoria: 'Almacenamiento',
-        stock: 10
-    },
-    { 
-        id: 4, 
-        nombre: 'SSD 240GB', 
-        precio: 28000, 
-        imagenes: ['⚡'], 
-        categoria: 'Almacenamiento',
-        stock: 10
-    },
-    { 
-        id: 5, 
-        nombre: 'Kingston Disco Ssd 960gb 1tb', 
-        precio: 210000, 
-        imagenes: [
-            'https://i.ibb.co/BVzqYg6C/HD.jpg',
-            'https://i.ibb.co/TByFGRCY/HD00.jpg',
-            'https://i.ibb.co/ZRxXRXBT/HD01.jpg'
-        ], 
-        categoria: 'Almacenamiento',
-        esImagen: true,
-        stock: 10
-    },
-    { 
-        id: 6, 
-        nombre: 'Motherboard Intel', 
-        precio: 85000, 
-        imagenes: ['🔌'], 
-        categoria: 'Componentes',
-        stock: 10
-    },
-    { 
-        id: 7, 
-        nombre: 'Motherboard AMD', 
-        precio: 78000, 
-        imagenes: ['🔌'], 
-        categoria: 'Componentes',
-        stock: 10
-    },
-    { 
-        id: 8, 
-        nombre: 'Notebook Básica', 
-        precio: 450000, 
-        imagenes: ['💻'], 
-        categoria: 'Notebooks',
-        stock: 2  // Solo 2 notebooks básicas
-    },
-    { 
-        id: 9, 
-        nombre: 'Notebook Gamer', 
-        precio: 850000, 
-        imagenes: ['🎮'], 
-        categoria: 'Notebooks',
-        stock: 2  // Solo 2 notebooks gamer
-    },
-    { 
-        id: 10, 
-        nombre: 'Mouse Gamer RGB', 
-        precio: 18000, 
-        imagenes: ['🖱️'], 
-        categoria: 'Periféricos',
-        stock: 10
-    },
-    { 
-        id: 11, 
-        nombre: 'Teclado Gamer Mecánico', 
-        precio: 45000, 
-        imagenes: ['⌨️'], 
-        categoria: 'Periféricos',
-        stock: 10
-    },
-    { 
-        id: 12, 
-        nombre: 'Kit Teclado + Mouse Gamer', 
-        precio: 55000, 
-        imagenes: ['🎮'], 
-        categoria: 'Periféricos',
-        stock: 10
-    }
-];
+        { 
+            id: 1, 
+            nombre: 'Memoria RAM DDR4 8GB', 
+            precio: 25000, 
+            imagenes: ['🎯'],
+            categoria: 'RAM' 
+        },
+        { 
+            id: 2, 
+            nombre: 'Memoria RAM DDR4 16GB', 
+            precio: 45000, 
+            imagenes: ['🎯'], 
+            categoria: 'RAM' 
+        },
+        { 
+            id: 3, 
+            nombre: 'Disco Rígido 1TB', 
+            precio: 100000, 
+            imagenes: [
+                'https://i.ibb.co/203BTP8T/hd1tb.jpg',
+                       
+            ], 
+            categoria: 'Almacenamiento',
+            esImagen: true
+        },
+        { 
+            id: 4, 
+            nombre: 'SSD 240GB', 
+            precio: 28000, 
+            imagenes: ['⚡'], 
+            categoria: 'Almacenamiento' 
+        },
+        { 
+            id: 5, 
+            nombre: 'Kingston Disco Ssd 960gb 1tb', 
+            precio: 210000, 
+            imagenes: [
+                'https://i.ibb.co/BVzqYg6C/HD.jpg',
+                'https://i.ibb.co/TByFGRCY/HD00.jpg',
+                'https://i.ibb.co/ZRxXRXBT/HD01.jpg'
+            ], 
+            categoria: 'Almacenamiento',
+            esImagen: true 
+        },
+        { 
+            id: 6, 
+            nombre: 'Motherboard HP Spectre', 
+            precio: 420000, 
+            imagenes: [
+                'https://i.ibb.co/vv4JjzqX/notebbokhp00.jpg',
+                'https://i.ibb.co/Ng920j6L/20221225-150938.jpg',
+                'https://i.ibb.co/4Z63w5Ct/20221225-151104.jpg',
+                'https://i.ibb.co/Mystj531/20221225-151504.jpg',
+                'https://i.ibb.co/V040znpm/20221225-151557.jpg',
+                'https://i.ibb.co/v4fbdyG7/notebbokhp.jpg',
+                'https://i.ibb.co/jkL6J0jX/20221225-151917.jpg'
+             
+            ], 
+            categoria: 'Componentes', 
+            esImagen: true
+        },
+        { 
+            id: 7, 
+            nombre: 'Motherboard AMD', 
+            precio: 78000, 
+            imagenes: ['🔌'], 
+            categoria: 'Componentes' 
+        },
+        { 
+            id: 8, 
+            nombre: 'Notebook Básica', 
+            precio: 420000, 
+            imagenes: ['💻'], 
+            categoria: 'Notebooks' 
+        },
+        { 
+            id: 9, 
+            nombre: 'Notebook Gamer', 
+            precio: 850000, 
+            imagenes: ['🎮'], 
+            categoria: 'Notebooks' 
+        },
+        { 
+            id: 10, 
+            nombre: 'Mouse Gamer RGB', 
+            precio: 18000, 
+            imagenes: ['🖱️'], 
+            categoria: 'Periféricos' 
+        },
+        { 
+            id: 11, 
+            nombre: 'Teclado Gamer Mecánico', 
+            precio: 45000, 
+            imagenes: ['⌨️'], 
+            categoria: 'Periféricos' 
+        },
+        { 
+            id: 12, 
+            nombre: 'Kit Teclado + Mouse Gamer', 
+            precio: 55000, 
+            imagenes: ['🎮'], 
+            categoria: 'Periféricos' 
+        }
+    ];
 
     let carrito = [];
     let galeriaIndices = {};
@@ -1216,68 +1145,53 @@
     // Renderizar productos
     function renderizarProductos() {
         const container = document.getElementById('productosContainer');
-    container.innerHTML = productos.map(prod => {
-        const esImagen = prod.esImagen || (prod.imagenes && prod.imagenes[0] && prod.imagenes[0].startsWith('http'));
-        const tieneVariasImagenes = prod.imagenes && prod.imagenes.length > 1;
-        const sinStock = prod.stock <= 0;
-        const stockBajo = prod.stock > 0 && prod.stock <= 3;
-        
-        return `
-            <div class="producto-card ${sinStock ? 'producto-agotado' : ''}">
-                <div class="producto-galeria" id="galeria-${prod.id}">
-                    ${esImagen ? 
-                        `<img src="${prod.imagenes[0]}" 
-                             alt="${prod.nombre}" 
-                             class="galeria-imagen-principal" 
-                             onclick="abrirLightbox(${prod.id}, 0)"
-                             data-producto="${prod.id}"
-                             data-indice="0">` :
-                        `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
-                            ${prod.imagenes[0]}
-                        </div>`
-                    }
+        container.innerHTML = productos.map(prod => {
+            const esImagen = prod.esImagen || (prod.imagenes && prod.imagenes[0] && prod.imagenes[0].startsWith('http'));
+            const tieneVariasImagenes = prod.imagenes && prod.imagenes.length > 1;
+            
+            return `
+                <div class="producto-card">
+                    <div class="producto-galeria" id="galeria-${prod.id}">
+                        ${esImagen ? 
+                            `<img src="${prod.imagenes[0]}" 
+                                 alt="${prod.nombre}" 
+                                 class="galeria-imagen-principal" 
+                                 onclick="abrirLightbox(${prod.id}, 0)"
+                                 data-producto="${prod.id}"
+                                 data-indice="0">` :
+                            `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                                ${prod.imagenes[0]}
+                            </div>`
+                        }
+                        ${tieneVariasImagenes && esImagen ? `
+                            <div class="galeria-flechas">
+                                <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, -1)">‹</button>
+                                <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, 1)">›</button>
+                            </div>
+                        ` : ''}
+                    </div>
                     ${tieneVariasImagenes && esImagen ? `
-                        <div class="galeria-flechas">
-                            <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, -1)">‹</button>
-                            <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, 1)">›</button>
+                        <div class="galeria-miniaturas">
+                            ${prod.imagenes.map((img, idx) => `
+                                <img src="${img}" 
+                                     class="galeria-miniatura ${idx === 0 ? 'active' : ''}" 
+                                     onclick="seleccionarImagenGaleria(${prod.id}, ${idx})"
+                                     data-producto="${prod.id}"
+                                     data-indice="${idx}">
+                            `).join('')}
                         </div>
                     ` : ''}
-                    ${sinStock ? '<div class="badge-agotado">AGOTADO</div>' : ''}
-                    ${stockBajo && !sinStock ? `<div class="badge-stock-bajo">¡Últimas ${prod.stock} unidades!</div>` : ''}
-                </div>
-                ${tieneVariasImagenes && esImagen ? `
-                    <div class="galeria-miniaturas">
-                        ${prod.imagenes.map((img, idx) => `
-                            <img src="${img}" 
-                                 class="galeria-miniatura ${idx === 0 ? 'active' : ''}" 
-                                 onclick="seleccionarImagenGaleria(${prod.id}, ${idx})"
-                                 data-producto="${prod.id}"
-                                 data-indice="${idx}">
-                        `).join('')}
+                    <div class="producto-info">
+                        <h3>${prod.nombre}</h3>
+                        <p>${prod.categoria}</p>
+                        <div class="producto-precio">$${prod.precio.toLocaleString('es-AR')}</div>
+                        <button class="btn btn-primary" onclick="agregarAlCarrito(${prod.id})">Agregar al Carrito</button>
                     </div>
-                ` : ''}
-                <div class="producto-info">
-                    <h3>${prod.nombre}</h3>
-                    <p>${prod.categoria}</p>
-                    <div class="producto-precio">$${prod.precio.toLocaleString('es-AR')}</div>
-                    <div class="producto-stock">
-                        ${sinStock ? 
-                            '<span class="stock-agotado">⚠️ Sin stock</span>' : 
-                            stockBajo ? 
-                                `<span class="stock-bajo">📦 Solo quedan ${prod.stock}</span>` :
-                                `<span class="stock-disponible">✅ Stock: ${prod.stock} disponibles</span>`
-                        }
-                    </div>
-                    <button class="btn btn-primary" 
-                            onclick="agregarAlCarrito(${prod.id})" 
-                            ${sinStock ? 'disabled' : ''}>
-                        ${sinStock ? 'Sin Stock' : 'Agregar al Carrito'}
-                    </button>
                 </div>
-            </div>
-        `;
-    }).join('');
-}
+            `;
+        }).join('');
+    }
+
     // Galería de imágenes
     function cambiarImagenGaleria(productoId, direccion) {
         const producto = productos.find(p => p.id === productoId);
@@ -1392,30 +1306,22 @@
 
     // Carrito
     function agregarAlCarrito(id) {
-    const producto = productos.find(p => p.id === id);
-    
-    // Verificar stock
-    if (producto.stock <= 0) {
-        mostrarNotificacion('⚠️ Producto sin stock');
-        return;
-    }
-    
-    const itemExistente = carrito.find(item => item.id === id);
-    
-    if (itemExistente) {
-        // Verificar que no supere el stock
-        if (itemExistente.cantidad >= producto.stock) {
-            mostrarNotificacion(`⚠️ Stock máximo alcanzado (${producto.stock} unidades)`);
-            return;
+        const producto = productos.find(p => p.id === id);
+        const itemExistente = carrito.find(item => item.id === id);
+        
+        if (itemExistente) {
+            itemExistente.cantidad++;
+        } else {
+            carrito.push({ ...producto, cantidad: 1 });
         }
-        itemExistente.cantidad++;
-    } else {
-        carrito.push({ ...producto, cantidad: 1 });
+        
+        actualizarCarrito();
+        mostrarNotificacion('Producto agregado al carrito');
     }
-    
-    actualizarCarrito();
-    mostrarNotificacion('✅ Producto agregado al carrito');
-}
+
+    function actualizarCarrito() {
+        const count = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+        document.getElementById('carritoCount').textContent = count;
         
         const itemsContainer = document.getElementById('carritoItems');
         if (carrito.length === 0) {
@@ -1442,27 +1348,16 @@
     }
 
     function cambiarCantidad(id, cambio) {
-    const item = carrito.find(i => i.id === id);
-    const producto = productos.find(p => p.id === id);
-    
-    if (item) {
-        const nuevaCantidad = item.cantidad + cambio;
-        
-        // Verificar stock al aumentar
-        if (cambio > 0 && nuevaCantidad > producto.stock) {
-            mostrarNotificacion(`⚠️ Stock máximo: ${producto.stock} unidades`);
-            return;
-        }
-        
-        item.cantidad = nuevaCantidad;
-        
-        if (item.cantidad <= 0) {
-            eliminarDelCarrito(id);
-        } else {
-            actualizarCarrito();
+        const item = carrito.find(i => i.id === id);
+        if (item) {
+            item.cantidad += cambio;
+            if (item.cantidad <= 0) {
+                eliminarDelCarrito(id);
+            } else {
+                actualizarCarrito();
+            }
         }
     }
-}
 
     function eliminarDelCarrito(id) {
         carrito = carrito.filter(item => item.id !== id);
@@ -1577,10 +1472,6 @@
 </body>
 
 </html>
-
-
-
-
 
 
 
