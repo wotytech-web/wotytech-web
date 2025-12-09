@@ -1231,53 +1231,69 @@
 
     // Renderizar productos
     function renderizarProductos() {
-        const container = document.getElementById('productosContainer');
-        container.innerHTML = productos.map(prod => {
-            const esImagen = prod.esImagen || (prod.imagenes && prod.imagenes[0] && prod.imagenes[0].startsWith('http'));
-            const tieneVariasImagenes = prod.imagenes && prod.imagenes.length > 1;
-            
-            return `
-                <div class="producto-card">
-                    <div class="producto-galeria" id="galeria-${prod.id}">
-                        ${esImagen ? 
-                            `<img src="${prod.imagenes[0]}" 
-                                 alt="${prod.nombre}" 
-                                 class="galeria-imagen-principal" 
-                                 onclick="abrirLightbox(${prod.id}, 0)"
-                                 data-producto="${prod.id}"
-                                 data-indice="0">` :
-                            `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
-                                ${prod.imagenes[0]}
-                            </div>`
-                        }
+    const container = document.getElementById('productosContainer');
+    container.innerHTML = productos.map(prod => {
+        const esImagen = prod.esImagen || (prod.imagenes && prod.imagenes[0] && prod.imagenes[0].startsWith('http'));
+        const tieneVariasImagenes = prod.imagenes && prod.imagenes.length > 1;
+        const sinStock = prod.stock <= 0;
+        const stockBajo = prod.stock > 0 && prod.stock <= 3;
+        
+        return `
+                <div class="producto-card ${sinStock ? 'producto-agotado' : ''}">
+                <div class="producto-galeria" id="galeria-${prod.id}">
+                    ${esImagen ? 
+                        `<img src="${prod.imagenes[0]}" 
+                             alt="${prod.nombre}" 
+                             class="galeria-imagen-principal" 
+                             onclick="abrirLightbox(${prod.id}, 0)"
+                             data-producto="${prod.id}"
+                             data-indice="0">` :
+                        `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                            ${prod.imagenes[0]}
+                        </div>`
+                    }
                         ${tieneVariasImagenes && esImagen ? `
-                            <div class="galeria-flechas">
-                                <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, -1)">‹</button>
-                                <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, 1)">›</button>
-                            </div>
-                        ` : ''}
-                    </div>
-                    ${tieneVariasImagenes && esImagen ? `
-                        <div class="galeria-miniaturas">
-                            ${prod.imagenes.map((img, idx) => `
-                                <img src="${img}" 
-                                     class="galeria-miniatura ${idx === 0 ? 'active' : ''}" 
-                                     onclick="seleccionarImagenGaleria(${prod.id}, ${idx})"
-                                     data-producto="${prod.id}"
-                                     data-indice="${idx}">
-                            `).join('')}
+                        <div class="galeria-flechas">
+                            <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, -1)">‹</button>
+                            <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, 1)">›</button>
                         </div>
                     ` : ''}
-                    <div class="producto-info">
-                        <h3>${prod.nombre}</h3>
-                        <p>${prod.categoria}</p>
-                        <div class="producto-precio">$${prod.precio.toLocaleString('es-AR')}</div>
-                        <button class="btn btn-primary" onclick="agregarAlCarrito(${prod.id})">Agregar al Carrito</button>
-                    </div>
+                    ${sinStock ? '<div class="badge-agotado">AGOTADO</div>' : ''}
+                    ${stockBajo && !sinStock ? `<div class="badge-stock-bajo">¡Últimas ${prod.stock} unidades!</div>` : ''}
                 </div>
-            `;
-        }).join('');
-    }
+                ${tieneVariasImagenes && esImagen ? `
+                    <div class="galeria-miniaturas">
+                        ${prod.imagenes.map((img, idx) => `
+                            <img src="${img}" 
+                                 class="galeria-miniatura ${idx === 0 ? 'active' : ''}" 
+                                 onclick="seleccionarImagenGaleria(${prod.id}, ${idx})"
+                                 data-producto="${prod.id}"
+                                 data-indice="${idx}">
+                        `).join('')}
+                    </div>
+                ` : ''}
+                <div class="producto-info">
+                    <h3>${prod.nombre}</h3>
+                    <p>${prod.categoria}</p>
+                    <div class="producto-precio">$${prod.precio.toLocaleString('es-AR')}</div>
+                    <div class="producto-stock">
+                        ${sinStock ? 
+                            '<span class="stock-agotado">⚠️ Sin stock</span>' : 
+                            stockBajo ? 
+                                `<span class="stock-bajo">📦 Solo quedan ${prod.stock}</span>` :
+                                `<span class="stock-disponible">✅ Stock: ${prod.stock} disponibles</span>`
+                        }
+                    </div>
+                    <button class="btn btn-primary" 
+                            onclick="agregarAlCarrito(${prod.id})" 
+                            ${sinStock ? 'disabled' : ''}>
+                        ${sinStock ? 'Sin Stock' : 'Agregar al Carrito'}
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
 
     // Galería de imágenes
     function cambiarImagenGaleria(productoId, direccion) {
@@ -1559,6 +1575,7 @@
 </body>
 
 </html>
+
 
 
 
