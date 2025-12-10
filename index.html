@@ -968,6 +968,22 @@
     50% { opacity: 0.5; }
 }
 
+/* Fix carrito siempre visible */
+.carrito-flotante {
+    z-index: 10000 !important;
+}
+
+@media (max-width: 768px) {
+    header {
+        z-index: 999 !important;
+    }
+    
+    .carrito-flotante {
+        z-index: 10000 !important;
+        bottom: 20px !important;
+        right: 20px !important;
+    }
+}
     
     </style>
 </head>
@@ -1634,6 +1650,7 @@ function cambiarCantidad(id, cambio) {
 </body>
 
 </html>
+
 
 
 
