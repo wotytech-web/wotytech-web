@@ -13,14 +13,14 @@
         }
 
         body {
-            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-family: 'Arial', 'Helvetica', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #0074ba;
+            color: #fff;
+            background: #000;
             position: relative;
+            overflow-x: hidden;
         }
 
-        /* Efecto de puntos Ben-Day estilo cómic */
         body::before {
             content: '';
             position: fixed;
@@ -28,23 +28,29 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: radial-gradient(circle, rgba(0,0,0,0.1) 1px, transparent 1px);
-            background-size: 4px 4px;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 116, 186, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(233, 30, 99, 0.3) 0%, transparent 50%);
+            animation: pulseBackground 8s ease-in-out infinite;
             pointer-events: none;
-            z-index: 1;
+            z-index: 0;
         }
 
-        /* Header y Navegación */
+        @keyframes pulseBackground {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
         header {
-            background: #2b2d42;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             color: white;
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 0 #000, 0 6px 20px rgba(0,0,0,0.5);
-            border-bottom: 4px solid #ffd700;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5);
+            border-bottom: 3px solid #ffd700;
         }
 
         nav {
@@ -64,21 +70,32 @@
             gap: 10px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 3px 3px 0 #000, -1px -1px 0 #ffd700;
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px #ffd700; }
+            50% { text-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700; }
         }
 
         .logo-img {
             width: 50px;
             height: 50px;
             object-fit: contain;
-            filter: drop-shadow(3px 3px 0 #000);
+            filter: drop-shadow(0 0 10px #ffd700);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
-            position: relative;
         }
 
         .nav-links a {
@@ -88,35 +105,56 @@
             transition: all 0.3s;
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-shadow: 2px 2px 0 #000;
             position: relative;
+            padding: 5px 10px;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
         }
 
         .nav-links a:hover {
             color: #ffd700;
-            transform: scale(1.1);
+            text-shadow: 0 0 10px #ffd700;
         }
 
-        .nav-item {
-            position: relative;
-        }
+        .nav-item { position: relative; }
 
         .dropdown-menu {
             display: none;
             position: absolute;
             top: 100%;
             right: 0;
-            background: #808080;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
             padding: 1rem;
             min-width: 250px;
             margin-top: 0.5rem;
             z-index: 1001;
+            border: 2px solid #ffd700;
         }
 
         .dropdown-menu.active {
             display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .dropdown-item {
@@ -124,31 +162,29 @@
             align-items: center;
             gap: 1rem;
             padding: 0.8rem;
-            color: #ff0000;
+            color: #ffd700;
             text-decoration: none;
-            border-radius: 8px;
-            transition: background 0.3s;
+            border-radius: 10px;
+            transition: all 0.3s;
         }
 
         .dropdown-item:hover {
-            background: #6a6a6a;
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateX(5px);
         }
+
+        .dropdown-item span { color: #ffd700; }
 
         .dropdown-icon {
             width: 30px;
             height: 30px;
+            filter: drop-shadow(0 0 5px #ffd700);
         }
 
-        .dropdown-item span {
-            font-weight: 500;
-            color: #ff0000;
-        }
-
-        /* Hero Section */
         .hero {
-            background: #2b2d42;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #1a1a2e 100%);
             color: white;
-            padding: 120px 2rem 80px;
+            padding: 140px 2rem 80px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -158,41 +194,45 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 215, 0, 0.03) 10px,
-                rgba(255, 215, 0, 0.03) 20px
-            );
-            pointer-events: none;
+            left: -100%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
         }
 
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            animation: fadeInDown 1s;
+            animation: fadeInScale 1s ease-out;
             text-transform: uppercase;
             letter-spacing: 3px;
-            text-shadow: 
-                4px 4px 0 #000,
-                -2px -2px 0 #ffd700,
-                6px 6px 20px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700;
             position: relative;
             z-index: 2;
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
-            animation: fadeInUp 1s;
-            text-shadow: 2px 2px 0 #000;
-            font-weight: bold;
+            animation: fadeInUp 1s ease-out 0.3s both;
             position: relative;
             z-index: 2;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .cta-buttons {
@@ -200,12 +240,13 @@
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         .btn {
             padding: 15px 40px;
-            border: 4px solid #000;
-            border-radius: 10px;
+            border: none;
+            border-radius: 50px;
             font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
@@ -214,34 +255,50 @@
             display: inline-block;
             text-transform: uppercase;
             letter-spacing: 2px;
-            box-shadow: 4px 4px 0 #000;
             position: relative;
-            font-family: 'Impact', 'Arial Black', sans-serif;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .btn-primary {
-            background: #ffd700;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
             color: #000;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.7);
         }
 
         .btn-secondary {
             background: transparent;
             color: white;
-            border: 4px solid white;
-            box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+            border: 2px solid #ffd700;
         }
 
-        .btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 #000;
+        .btn-secondary:hover {
+            background: rgba(255, 215, 0, 0.1);
+            transform: translateY(-3px);
         }
 
-        .btn:active {
-            transform: translate(2px, 2px);
-            box-shadow: 2px 2px 0 #000;
-        }
-
-        /* Secciones */
         section {
             max-width: 1200px;
             margin: 0 auto;
@@ -254,31 +311,32 @@
             font-size: 3rem;
             text-align: center;
             margin-bottom: 3rem;
-            color: #e91e63;
+            color: #ffd700;
             text-transform: uppercase;
             letter-spacing: 3px;
-            text-shadow: 
-                4px 4px 0 #000,
-                -2px -2px 0 #fff,
-                6px 6px 0 rgba(0,0,0,0.3);
+            text-shadow: 0 0 20px #ffd700;
             position: relative;
             display: inline-block;
             width: 100%;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
             width: 200px;
-            height: 4px;
-            background: #ffd700;
-            box-shadow: 0 2px 0 #000;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
         }
 
-        /* Servicios */
         .servicios-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -286,168 +344,281 @@
         }
 
         .servicio-card {
-            background: white;
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.8) 0%, rgba(15, 52, 96, 0.8) 100%);
             padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 
-                0 0 0 4px #000,
-                0 0 0 6px #ffd700,
-                8px 8px 0 rgba(0,0,0,0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
+            transition: all 0.4s;
             text-align: center;
-            border: 3px solid #000;
+            border: 2px solid rgba(255, 215, 0, 0.3);
             position: relative;
-            z-index: 2;
+            overflow: hidden;
+        }
+
+        .servicio-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s;
+        }
+
+        .servicio-card:hover::before {
+            transform: scale(1);
         }
 
         .servicio-card:hover {
-            transform: translateY(-10px) rotate(-2deg);
-            box-shadow: 
-                0 0 0 4px #000,
-                0 0 0 6px #e91e63,
-                12px 12px 0 rgba(0,0,0,0.4);
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.4);
+            border-color: #ffd700;
         }
 
         .servicio-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px #ffd700);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .servicio-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #2b2d42;
+            color: #ffd700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 2px 2px 0 rgba(233, 30, 99, 0.3);
         }
 
-        /* Productos */
+        .servicio-card p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
         .productos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
         }
 
         .producto-card {
-            background: white;
-            border-radius: 15px;
+            background: #ffffff;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 
-                0 0 0 4px #000,
-                0 0 0 6px #0074ba,
-                8px 8px 0 rgba(0,0,0,0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 3px solid #000;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+            transition: all 0.4s;
+            border: 3px solid rgba(255, 215, 0, 0.5);
             position: relative;
-            z-index: 2;
         }
 
         .producto-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: 
-                0 0 0 4px #000,
-                0 0 0 6px #ffd700,
-                12px 12px 0 rgba(0,0,0,0.4);
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.5);
+            border-color: #ffd700;
         }
 
-        .producto-img {
+        .producto-galeria {
+            position: relative;
             width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 250px;
+            background: #ffffff;
+            overflow: hidden;
+            border-bottom: 3px solid #f0f0f0;
+        }
+
+        .galeria-imagen-principal {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.4s;
+            padding: 20px;
+        }
+
+        .galeria-imagen-principal:hover {
+            transform: scale(1.1);
+        }
+
+        .galeria-miniaturas {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
+            gap: 5px;
+            padding: 10px;
+            overflow-x: auto;
+            background: #f8f8f8;
+        }
+
+        .galeria-miniatura {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: all 0.3s;
+            flex-shrink: 0;
+            background: white;
+        }
+
+        .galeria-miniatura:hover {
+            border-color: #ffd700;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .galeria-miniatura.active {
+            border-color: #0074ba;
+            box-shadow: 0 0 15px rgba(0, 116, 186, 0.5);
+        }
+
+        .galeria-flechas {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            pointer-events: none;
+        }
+
+        .galeria-flecha {
+            background: rgba(0, 116, 186, 0.8);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            pointer-events: all;
+            transition: all 0.3s;
+        }
+
+        .galeria-flecha:hover {
+            background: #0074ba;
+            transform: scale(1.15);
         }
 
         .producto-info {
             padding: 1.5rem;
+            background: white;
         }
 
         .producto-info h3 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: #2b2d42;
+            color: #1a1a2e;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
+        .producto-info p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
         .producto-precio {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: bold;
-            color: #e91e63;
+            color: #0074ba;
             margin: 1rem 0;
-            text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
         }
 
-        .producto-info .btn {
-            width: 100%;
-            padding: 12px;
-            font-size: 1rem;
+        .producto-stock {
+            margin: 0.5rem 0;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
         }
 
-        /* Carrito */
+        .stock-disponible { color: #10b981; }
+        .stock-bajo { color: #ffa500; animation: parpadeo 1.5s infinite; }
+        .stock-agotado { color: #ff3838; }
+
+        @keyframes parpadeo {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .badge-agotado, .badge-stock-bajo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
+            z-index: 10;
+            color: white;
+        }
+
+        .badge-agotado { background: #ff3838; }
+        .badge-stock-bajo { background: #ffa500; }
+
+        .producto-agotado .producto-galeria {
+            opacity: 0.6;
+            filter: grayscale(50%);
+        }
+
+        .btn:disabled {
+            background: #999 !important;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
         .carrito-flotante {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: #667eea;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    cursor: pointer;
-    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
-    transition: transform 0.3s;
-    z-index: 10000; /* MUY IMPORTANTE - Aumentado de 1000 a 10000 */
-}
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #0074ba 0%, #0095ea 100%);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 116, 186, 0.6);
+            transition: all 0.3s;
+            z-index: 10000;
+            border: 3px solid rgba(255, 215, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
 
-.carrito-flotante:hover {
-    transform: scale(1.1);
-}
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
 
-.carrito-badge {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background: #ff3838;
-    color: white;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
+        .carrito-flotante:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
 
-/* Responsive - Mobile */
-@media (max-width: 768px) {
-    .carrito-flotante {
-        bottom: 20px;
-        right: 20px;
-        width: 55px;
-        height: 55px;
-        font-size: 1.3rem;
-        z-index: 10000; /* Asegurar que esté por encima de todo */
-    }
+        .carrito-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff3838;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 2px solid white;
+        }
 
-    .carrito-badge {
-        width: 22px;
-        height: 22px;
-        font-size: 0.7rem;
-        top: -3px;
-        right: -3px;
-    }
-}
-
-        /* Modal Carrito */
         .modal {
             display: none;
             position: fixed;
@@ -455,24 +626,38 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 20000;
             align-items: center;
             justify-content: center;
         }
 
         .modal.active {
             display: flex;
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .modal-content {
-            background: white;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 25px;
             max-width: 600px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
+            box-shadow: 0 20px 80px rgba(255, 215, 0, 0.5);
+            border: 3px solid #ffd700;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .modal-header {
@@ -480,14 +665,32 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.5rem;
-            border-bottom: 2px solid #667eea;
+            border-bottom: 3px solid #0074ba;
             padding-bottom: 1rem;
+        }
+
+        .modal-header h2 {
+            color: #1a1a2e;
+            margin-bottom: 0;
         }
 
         .close-modal {
             font-size: 2rem;
             cursor: pointer;
             color: #666;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-modal:hover {
+            background: #ff3838;
+            color: white;
+            transform: rotate(90deg);
         }
 
         .carrito-item {
@@ -495,12 +698,18 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem;
-            border-bottom: 1px solid #eee;
+            border-bottom: 2px solid #eee;
+            background: white;
+            margin-bottom: 0.5rem;
+            border-radius: 10px;
         }
 
         .carrito-item-info {
             flex: 1;
+            color: #1a1a2e;
         }
+
+        .carrito-item-info strong { color: #0074ba; }
 
         .carrito-item-acciones {
             display: flex;
@@ -509,486 +718,214 @@
         }
 
         .btn-cantidad {
-            background: #667eea;
+            background: #0074ba;
             color: white;
             border: none;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             cursor: pointer;
             font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn-cantidad:hover {
+            transform: scale(1.2);
         }
 
         .carrito-total {
             margin-top: 1.5rem;
             padding-top: 1rem;
-            border-top: 2px solid #667eea;
+            border-top: 3px solid #0074ba;
             text-align: right;
         }
 
         .carrito-total h3 {
             font-size: 1.8rem;
-            color: #667eea;
-        }
-
-        /* Contacto */
-        .contacto-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contacto-selector {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-
-        .contacto-selector h3 {
-            color: #2b2d42;
+            color: #0074ba;
             margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .contacto-select {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
-            border: 2px solid #0074ba;
-            border-radius: 10px;
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .contacto-select:focus {
-            outline: none;
-            border-color: #e91e63;
-            box-shadow: 0 0 10px rgba(233, 30, 99, 0.3);
-        }
-
-        .contacto-info-card {
-            background: linear-gradient(135deg, #2b2d42 0%, #0074ba 100%);
-            color: white;
-            padding: 3rem;
-            border-radius: 15px;
-            text-align: center;
-            display: none;
-            animation: fadeInUp 0.5s;
-        }
-
-        .contacto-info-card.active {
-            display: block;
-        }
-
-        .contacto-info-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1.5rem;
-        }
-
-        .contacto-info-card h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .contacto-info-card p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .contacto-info-card a {
-            color: #ffd700;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-
-        .contacto-info-card .btn {
-            margin-top: 1.5rem;
         }
 
         .contacto-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
         }
 
         .contacto-card {
-            background: linear-gradient(135deg, #2b2d42 0%, #0074ba 100%);
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.9) 0%, rgba(15, 52, 96, 0.9) 100%);
             color: white;
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 20px;
             text-align: center;
-            transition: transform 0.3s;
-            border: 4px solid #000;
-            box-shadow: 
-                0 0 0 2px #ffd700,
-                6px 6px 0 rgba(0,0,0,0.4);
+            transition: all 0.4s;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
             position: relative;
-            z-index: 2;
+            overflow: hidden;
+        }
+
+        .contacto-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.6s;
+        }
+
+        .contacto-card:hover::before {
+            transform: scale(1);
         }
 
         .contacto-card:hover {
-            transform: scale(1.05) rotate(-2deg);
-            box-shadow: 
-                0 0 0 2px #e91e63,
-                8px 8px 0 rgba(0,0,0,0.5);
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+            border-color: #ffd700;
         }
 
         .contacto-icon {
             font-size: 3rem;
             margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px #ffd700);
+        }
+
+        .contacto-icon img {
+            filter: drop-shadow(0 0 10px #ffd700);
         }
 
         .contacto-card h3 {
             margin-bottom: 0.5rem;
-            color: white;
+            color: #ffd700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 3px 3px 0 #000;
         }
 
         .contacto-card a {
-            color: #ffd700;
+            color: white;
             text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .contacto-card a:hover {
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 30000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active { display: flex; }
+
+        .lightbox-contenido {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-imagen {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.5);
+        }
+
+        .lightbox-cerrar {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 116, 186, 0.8);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10000;
+        }
+
+        .lightbox-cerrar:hover {
+            background: #ff3838;
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .lightbox-flecha {
+            position: absolute;
+            background: rgba(0, 116, 186, 0.8);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10000;
+        }
+
+        .lightbox-flecha:hover {
+            background: #0074ba;
+            transform: scale(1.1);
+        }
+
+        .lightbox-flecha-izq { left: 30px; }
+        .lightbox-flecha-der { right: 30px; }
+
+        .lightbox-contador {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
             font-weight: bold;
         }
 
-        /* Footer */
         footer {
             background: #1a1a2e;
             color: white;
             text-align: center;
             padding: 2rem;
             margin-top: 4rem;
-            border-top: 4px solid #ffd700;
-            box-shadow: 0 -4px 0 #000;
-            text-shadow: 2px 2px 0 #000;
-            font-weight: bold;
-            position: relative;
-            z-index: 2;
+            border-top: 3px solid #ffd700;
+            box-shadow: 0 -4px 20px rgba(255, 215, 0, 0.3);
         }
 
-        /* Animaciones */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            h2 {
-                font-size: 2rem;
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            h2 { font-size: 2rem; }
+            .carrito-flotante {
+                width: 60px;
+                height: 60px;
+                bottom: 20px;
+                right: 20px;
             }
         }
-
-        /* Galería de productos */
-.producto-galeria {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    overflow: hidden;
-}
-
-.galeria-imagen-principal {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    cursor: pointer;
-    transition: transform 0.3s;
-    padding: 10px;
-}
-
-.galeria-imagen-principal:hover {
-    transform: scale(1.05);
-}
-
-.galeria-miniaturas {
-    display: flex;
-    gap: 5px;
-    padding: 10px;
-    overflow-x: auto;
-    background: #f5f5f5;
-}
-
-.galeria-miniatura {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    cursor: pointer;
-    border: 2px solid transparent;
-    border-radius: 5px;
-    transition: all 0.3s;
-    flex-shrink: 0;
-}
-
-.galeria-miniatura:hover {
-    border-color: #667eea;
-    transform: scale(1.1);
-}
-
-.galeria-miniatura.active {
-    border-color: #e91e63;
-    box-shadow: 0 0 10px rgba(233, 30, 99, 0.5);
-}
-
-.galeria-flechas {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
-    pointer-events: none;
-}
-
-.galeria-flecha {
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-    pointer-events: all;
-    transition: all 0.3s;
-}
-
-.galeria-flecha:hover {
-    background: rgba(0, 0, 0, 0.8);
-    transform: scale(1.1);
-}
-
-/* Lightbox (Modal para imágenes grandes) */
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 9999;
-    align-items: center;
-    justify-content: center;
-}
-
-.lightbox.active {
-    display: flex;
-}
-
-.lightbox-contenido {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.lightbox-imagen {
-    max-width: 100%;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: 10px;
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.3);
-}
-
-.lightbox-cerrar {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    font-size: 30px;
-    cursor: pointer;
-    transition: all 0.3s;
-    z-index: 10000;
-}
-
-.lightbox-cerrar:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-}
-
-.lightbox-flecha {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    font-size: 30px;
-    cursor: pointer;
-    transition: all 0.3s;
-    z-index: 10000;
-}
-
-.lightbox-flecha:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-}
-
-.lightbox-flecha-izq {
-    left: 30px;
-}
-
-.lightbox-flecha-der {
-    right: 30px;
-}
-
-.lightbox-contador {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-/* Stock badges en las imágenes */
-.badge-agotado {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ff3838;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 14px;
-    box-shadow: 0 4px 10px rgba(255, 56, 56, 0.4);
-    z-index: 10;
-    border: 2px solid #000;
-}
-
-.badge-stock-bajo {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ffa500;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 12px;
-    box-shadow: 0 4px 10px rgba(255, 165, 0, 0.4);
-    z-index: 10;
-    border: 2px solid #000;
-}
-
-/* Información de stock */
-.producto-stock {
-    margin: 0.5rem 0;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.stock-disponible {
-    color: #10b981;
-}
-
-.stock-bajo {
-    color: #ffa500;
-    animation: parpadeo 1.5s infinite;
-}
-
-.stock-agotado {
-    color: #ff3838;
-}
-
-/* Producto agotado con filtro */
-.producto-agotado .producto-galeria {
-    opacity: 0.6;
-    filter: grayscale(50%);
-}
-
-/* Botón deshabilitado */
-.btn:disabled {
-    background: #999 !important;
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-.btn:disabled:hover {
-    transform: none;
-    box-shadow: 4px 4px 0 #000;
-}
-
-/* Animación de parpadeo para stock bajo */
-@keyframes parpadeo {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
-/* Fix carrito siempre visible */
-.carrito-flotante {
-    z-index: 10000 !important;
-}
-
-@media (max-width: 768px) {
-    header {
-        z-index: 999 !important;
-    }
-    
-    .carrito-flotante {
-        z-index: 10000 !important;
-        bottom: 20px !important;
-        right: 20px !important;
-    }
-}
-    
     </style>
 </head>
+
 <body>
-    <!-- Header -->
     <header>
         <nav>
             <div class="logo">
@@ -1020,7 +957,6 @@
         </nav>
     </header>
 
-    <!-- Hero -->
     <section id="inicio" class="hero">
         <h1>WotyTech Soluciones Informáticas</h1>
         <p>Tu aliado tecnológico de confianza. Soporte técnico profesional y productos de calidad.</p>
@@ -1030,7 +966,6 @@
         </div>
     </section>
 
-    <!-- Servicios -->
     <section id="servicios">
         <h2>Nuestros Servicios</h2>
         <div class="servicios-grid">
@@ -1067,13 +1002,11 @@
         </div>
     </section>
 
-    <!-- Productos -->
     <section id="productos">
         <h2>Nuestros Productos</h2>
         <div class="productos-grid" id="productosContainer"></div>
     </section>
 
-    <!-- Contacto -->
     <section id="contacto">
         <h2>Contactanos</h2>
         <div class="contacto-grid">
@@ -1099,19 +1032,16 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2024 WotyTech Soluciones Informáticas. Todos los derechos reservados.</p>
         <p>Buenos Aires, Argentina</p>
     </footer>
 
-    <!-- Carrito Flotante -->
     <div class="carrito-flotante" onclick="toggleCarrito()">
         🛒
         <span class="carrito-badge" id="carritoCount">0</span>
     </div>
 
-    <!-- Modal Carrito -->
     <div class="modal" id="carritoModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1134,265 +1064,86 @@
     </div>
 
     <script>
- // Configuración de Mercado Pago
     const mp = new MercadoPago('APP_USR-16e18f72-7c74-4ceb-bc53-b1dd9937686d');
     const ACCESS_TOKEN = 'APP_USR-2519012086152007-111221-6e71aed2c0c16f81de976cafad94a184-2986635467';
 
-    // Base de datos de productos
     const productos = [
-    { 
-        id: 1, 
-            nombre: 'Msi Nvidia Gaming X Trio Rtx 3070 8gb', 
-            precio: 700000, 
-            imagenes: [
-                
-                'https://i.ibb.co/d4NJyr9h/msivideo.jpg',
-                'https://i.ibb.co/HpM1myhm/msivideo1.jpg',
-                'https://i.ibb.co/d46hQJ8p/msivideo2.jpg'
-                
-                ],
-            categoria: 'Componente', 
-            esImagen: true,
-            stock: 0
-    },
-    { 
-        id: 2, 
-        nombre: 'Memoria Kingston 4gb Ddr3 1600 Pc3', 
-        precio: 25000, 
-        imagenes: [
-            
-              'https://i.ibb.co/k6B0swGj/ddr34gb.jpg',
-              'https://i.ibb.co/hkLDY6j/ddr34gb1.jpg',
-              'https://i.ibb.co/0RxB2Qyf/ddr34gb12.jpg'
-           
-            ],
-        
-            categoria: 'RAM',
-            esImagen: true, 
-            stock: 5
-    },
-    { 
-        id: 3, 
-            nombre: 'Disco Rigido 1tb Wd Western Digital Sata Blue', 
-            precio: 100000, 
-            imagenes: [
-                
-                'https://i.ibb.co/203BTP8T/hd1tb.jpg'
-                       
-            ], 
-            categoria: 'Almacenamiento',
-            esImagen: true, 
-            stock: 8
-            
-     },
-    { 
-        id: 4, 
-        nombre: 'Disco Sólido Ssd Kingston A400 480gb Sata', 
-        precio: 115000, 
-        imagenes: [
-            
-            'https://i.ibb.co/rf3xJ0QG/hd480.jpg',
-            'https://i.ibb.co/Vh7ctJW/hd4801.jpg',
-            'https://i.ibb.co/Kpb4L8h8/hd4802.jpg'
-
-        ],
-               
-        categoria: 'Almacenamiento',
-        stock: 3
-    },
-    { 
-        id: 5, 
-        nombre: 'Disco Sólido Ssd Kingston A400 960gb sata', 
-        precio: 210000, 
-        imagenes: [
-            'https://i.ibb.co/BVzqYg6C/HD.jpg',
-            'https://i.ibb.co/TByFGRCY/HD00.jpg',
-            'https://i.ibb.co/ZRxXRXBT/HD01.jpg'
-        ], 
-        categoria: 'Almacenamiento',
-        esImagen: true,
-        stock: 3
-    },
-    { 
-        id: 6, 
-            nombre: 'Notebook HP Spectre', 
-            precio: 420000, 
-            imagenes: [
-                'https://i.ibb.co/vv4JjzqX/notebbokhp00.jpg',
-                'https://i.ibb.co/Ng920j6L/20221225-150938.jpg',
-                'https://i.ibb.co/Mystj531/20221225-151504.jpg',
-                'https://i.ibb.co/V040znpm/20221225-151557.jpg',
-                'https://i.ibb.co/v4fbdyG7/notebbokhp.jpg',
-                'https://i.ibb.co/jkL6J0jX/20221225-151917.jpg'
-             
-            ], 
-            categoria: 'Componentes', 
-            esImagen: true,
-            stock: 1
-        },
-        
-        { 
-        id: 7, 
-        nombre: 'Disco Rígido Externo Wd Element 1 Tb Fscomputers Negro', 
-        precio: 140000, 
-        imagenes: [
-            'https://i.ibb.co/PzT1VxdH/hdex.jpg',
-            'https://i.ibb.co/0pcX59fc/hdex0.jpg',
-            'https://i.ibb.co/TBPRprqW/hdex1.jpg'
-
-       ],     
-        categoria: 'Componentes',
-        esImagen: true,    
-        stock: 1
-    },
-    { 
-        id: 8, 
-        nombre: 'Memoria Kingston Kvr26s19s6/8, 8gb, Ddr4, Sodimm, 2666mhz', 
-        precio: 90000, 
-        imagenes: [
-            
-            'https://ibb.co/JjGFhbyx"><img src="https://i.ibb.co/4RXgQDYs/ramnote.jpg',
-            'https://ibb.co/23MzL6nH"><img src="https://i.ibb.co/PGW2bYm0/ramnote1.jpg',
-            'https://ibb.co/8gnbYXB4"><img src="https://i.ibb.co/YB4X0bWT/ramnote2.jpg'
-            
-        ], 
-        categoria: 'RAM',
-        esImagen: true,
-        stock: 3
-    },
-    { 
-        id: 9, 
-        nombre: 'Memoria RAM gamer color verde 8GB 1.2V Kingston KVR24S17S8/8', 
-        precio: 89000, 
-        imagenes: [
-            
-            'https://i.ibb.co/TBjzcTRh/ramnote0.jpg',
-            'https://i.ibb.co/9m2fgWb0/ramnote01.jpg'
-            
-            ], 
-        categoria: 'RAM',
-        esImagen: true,
-        stock: 1
-    },
-    { 
-        id: 10, 
-        nombre: 'Mouse Logitech G703 Wireless Gaming Lightspeed 12000dpi Negro', 
-        precio: 120000, 
-        imagenes: [
-
-            'https://i.ibb.co/20n9DwwV/g703.jpg'
-            
-        ], 
-        categoria: 'Periféricos',
-        esImagen: true,
-        stock: 0
-    },
-    { 
-        id: 11, 
-        nombre: 'Esperando Stock', 
-        precio: 000, 
-        imagenes: ['😊'], 
-        categoria: 'Periféricos',
-        stock:0
-    },
-    { 
-        id: 12, 
-        nombre: 'Esperando Stock', 
-        precio: 000, 
-        imagenes: ['😊'], 
-        categoria: 'Periféricos',
-        stock:0
-    }
-];
-
+        { id: 1, nombre: 'Msi Nvidia Gaming X Trio Rtx 3070 8gb', precio: 700000, imagenes: ['https://i.ibb.co/d4NJyr9h/msivideo.jpg', 'https://i.ibb.co/HpM1myhm/msivideo1.jpg', 'https://i.ibb.co/d46hQJ8p/msivideo2.jpg'], categoria: 'Componente', esImagen: true, stock: 0 },
+        { id: 2, nombre: 'Memoria Kingston 4gb Ddr3 1600 Pc3', precio: 25000, imagenes: ['https://i.ibb.co/k6B0swGj/ddr34gb.jpg', 'https://i.ibb.co/hkLDY6j/ddr34gb1.jpg', 'https://i.ibb.co/0RxB2Qyf/ddr34gb12.jpg'], categoria: 'RAM', esImagen: true, stock: 5 },
+        { id: 3, nombre: 'Disco Rigido 1tb Wd Western Digital Sata Blue', precio: 100000, imagenes: ['https://i.ibb.co/203BTP8T/hd1tb.jpg'], categoria: 'Almacenamiento', esImagen: true, stock: 8 },
+        { id: 4, nombre: 'Disco Sólido Ssd Kingston A400 480gb Sata', precio: 115000, imagenes: ['https://i.ibb.co/rf3xJ0QG/hd480.jpg', 'https://i.ibb.co/Vh7ctJW/hd4801.jpg', 'https://i.ibb.co/Kpb4L8h8/hd4802.jpg'], categoria: 'Almacenamiento', stock: 3 },
+        { id: 5, nombre: 'Disco Sólido Ssd Kingston A400 960gb sata', precio: 210000, imagenes: ['https://i.ibb.co/BVzqYg6C/HD.jpg', 'https://i.ibb.co/TByFGRCY/HD00.jpg', 'https://i.ibb.co/ZRxXRXBT/HD01.jpg'], categoria: 'Almacenamiento', esImagen: true, stock: 3 },
+        { id: 6, nombre: 'Notebook HP Spectre', precio: 420000, imagenes: ['https://i.ibb.co/vv4JjzqX/notebbokhp00.jpg', 'https://i.ibb.co/Ng920j6L/20221225-150938.jpg', 'https://i.ibb.co/Mystj531/20221225-151504.jpg', 'https://i.ibb.co/V040znpm/20221225-151557.jpg', 'https://i.ibb.co/v4fbdyG7/notebbokhp.jpg', 'https://i.ibb.co/jkL6J0jX/20221225-151917.jpg'], categoria: 'Componentes', esImagen: true, stock: 1 },
+        { id: 7, nombre: 'Disco Rígido Externo Wd Element 1 Tb Fscomputers Negro', precio: 140000, imagenes: ['https://i.ibb.co/PzT1VxdH/hdex.jpg', 'https://i.ibb.co/0pcX59fc/hdex0.jpg', 'https://i.ibb.co/TBPRprqW/hdex1.jpg'], categoria: 'Componentes', esImagen: true, stock: 1 },
+        { id: 8, nombre: 'Memoria Kingston Kvr26s19s6/8, 8gb, Ddr4, Sodimm, 2666mhz', precio: 90000, imagenes: ['https://i.ibb.co/4RXgQDYs/ramnote.jpg', 'https://i.ibb.co/PGW2bYm0/ramnote1.jpg', 'https://i.ibb.co/YB4X0bWT/ramnote2.jpg'], categoria: 'RAM', esImagen: true, stock: 3 },
+        { id: 9, nombre: 'Memoria RAM gamer color verde 8GB 1.2V Kingston KVR24S17S8/8', precio: 89000, imagenes: ['https://i.ibb.co/TBjzcTRh/ramnote0.jpg', 'https://i.ibb.co/9m2fgWb0/ramnote01.jpg'], categoria: 'RAM', esImagen: true, stock: 1 },
+        { id: 10, nombre: 'Mouse Logitech G703 Wireless Gaming Lightspeed 12000dpi Negro', precio: 120000, imagenes: ['https://i.ibb.co/20n9DwwV/g703.jpg'], categoria: 'Periféricos', esImagen: true, stock: 0 },
+        { id: 11, nombre: 'Esperando Stock', precio: 000, imagenes: ['😊'], categoria: 'Periféricos', stock:0 },
+        { id: 12, nombre: 'Esperando Stock', precio: 000, imagenes: ['😊'], categoria: 'Periféricos', stock:0 }
+    ];
 
     let carrito = [];
     let galeriaIndices = {};
+    productos.forEach(prod => { galeriaIndices[prod.id] = 0; });
 
-    // Inicializar índices de galerías
-    productos.forEach(prod => {
-        galeriaIndices[prod.id] = 0;
-    });
-
-    // Renderizar productos
     function renderizarProductos() {
-    const container = document.getElementById('productosContainer');
-    container.innerHTML = productos.map(prod => {
-        const esImagen = prod.esImagen || (prod.imagenes && prod.imagenes[0] && prod.imagenes[0].startsWith('http'));
-        const tieneVariasImagenes = prod.imagenes && prod.imagenes.length > 1;
-        const sinStock = prod.stock <= 0;
-        const stockBajo = prod.stock > 0 && prod.stock <= 3;
-        
-        return `
+        const container = document.getElementById('productosContainer');
+        container.innerHTML = productos.map(prod => {
+            const esImagen = prod.esImagen || (prod.imagenes && prod.imagenes[0] && prod.imagenes[0].startsWith('http'));
+            const tieneVariasImagenes = prod.imagenes && prod.imagenes.length > 1;
+            const sinStock = prod.stock <= 0;
+            const stockBajo = prod.stock > 0 && prod.stock <= 3;
+            
+            return `
                 <div class="producto-card ${sinStock ? 'producto-agotado' : ''}">
-                <div class="producto-galeria" id="galeria-${prod.id}">
-                    ${esImagen ? 
-                        `<img src="${prod.imagenes[0]}" 
-                             alt="${prod.nombre}" 
-                             class="galeria-imagen-principal" 
-                             onclick="abrirLightbox(${prod.id}, 0)"
-                             data-producto="${prod.id}"
-                             data-indice="0">` :
-                        `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">
-                            ${prod.imagenes[0]}
-                        </div>`
-                    }
+                    <div class="producto-galeria" id="galeria-${prod.id}">
+                        ${esImagen ? 
+                            `<img src="${prod.imagenes[0]}" alt="${prod.nombre}" class="galeria-imagen-principal" onclick="abrirLightbox(${prod.id}, 0)" data-producto="${prod.id}" data-indice="0">` :
+                            `<div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 4rem;">${prod.imagenes[0]}</div>`
+                        }
                         ${tieneVariasImagenes && esImagen ? `
-                        <div class="galeria-flechas">
-                            <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, -1)">‹</button>
-                            <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, 1)">›</button>
+                            <div class="galeria-flechas">
+                                <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, -1)">‹</button>
+                                <button class="galeria-flecha" onclick="cambiarImagenGaleria(${prod.id}, 1)">›</button>
+                            </div>
+                        ` : ''}
+                        ${sinStock ? '<div class="badge-agotado">AGOTADO</div>' : ''}
+                        ${stockBajo && !sinStock ? `<div class="badge-stock-bajo">¡Últimas ${prod.stock} unidades!</div>` : ''}
+                    </div>
+                    ${tieneVariasImagenes && esImagen ? `
+                        <div class="galeria-miniaturas">
+                            ${prod.imagenes.map((img, idx) => `
+                                <img src="${img}" class="galeria-miniatura ${idx === 0 ? 'active' : ''}" onclick="seleccionarImagenGaleria(${prod.id}, ${idx})" data-producto="${prod.id}" data-indice="${idx}">
+                            `).join('')}
                         </div>
                     ` : ''}
-                    ${sinStock ? '<div class="badge-agotado">AGOTADO</div>' : ''}
-                    ${stockBajo && !sinStock ? `<div class="badge-stock-bajo">¡Últimas ${prod.stock} unidades!</div>` : ''}
-                </div>
-                ${tieneVariasImagenes && esImagen ? `
-                    <div class="galeria-miniaturas">
-                        ${prod.imagenes.map((img, idx) => `
-                            <img src="${img}" 
-                                 class="galeria-miniatura ${idx === 0 ? 'active' : ''}" 
-                                 onclick="seleccionarImagenGaleria(${prod.id}, ${idx})"
-                                 data-producto="${prod.id}"
-                                 data-indice="${idx}">
-                        `).join('')}
+                    <div class="producto-info">
+                        <h3>${prod.nombre}</h3>
+                        <p>${prod.categoria}</p>
+                        <div class="producto-precio">$${prod.precio.toLocaleString('es-AR')}</div>
+                        <div class="producto-stock">
+                            ${sinStock ? '<span class="stock-agotado">⚠️ Sin stock</span>' : 
+                                stockBajo ? `<span class="stock-bajo">📦 Solo quedan ${prod.stock}</span>` :
+                                `<span class="stock-disponible">✅ Stock: ${prod.stock} disponibles</span>`}
+                        </div>
+                        <button class="btn btn-primary" onclick="agregarAlCarrito(${prod.id})" ${sinStock ? 'disabled' : ''}>
+                            ${sinStock ? 'Sin Stock' : 'Agregar al Carrito'}
+                        </button>
                     </div>
-                ` : ''}
-                <div class="producto-info">
-                    <h3>${prod.nombre}</h3>
-                    <p>${prod.categoria}</p>
-                    <div class="producto-precio">$${prod.precio.toLocaleString('es-AR')}</div>
-                    <div class="producto-stock">
-                        ${sinStock ? 
-                            '<span class="stock-agotado">⚠️ Sin stock</span>' : 
-                            stockBajo ? 
-                                `<span class="stock-bajo">📦 Solo quedan ${prod.stock}</span>` :
-                                `<span class="stock-disponible">✅ Stock: ${prod.stock} disponibles</span>`
-                        }
-                    </div>
-                    <button class="btn btn-primary" 
-                            onclick="agregarAlCarrito(${prod.id})" 
-                            ${sinStock ? 'disabled' : ''}>
-                        ${sinStock ? 'Sin Stock' : 'Agregar al Carrito'}
-                    </button>
                 </div>
-            </div>
-        `;
-    }).join('');
-}
+            `;
+        }).join('');
+    }
 
-    // Galería de imágenes
     function cambiarImagenGaleria(productoId, direccion) {
         const producto = productos.find(p => p.id === productoId);
         if (!producto || !producto.imagenes || producto.imagenes.length <= 1) return;
-        
         galeriaIndices[productoId] = (galeriaIndices[productoId] + direccion + producto.imagenes.length) % producto.imagenes.length;
-        
         const img = document.querySelector(`img.galeria-imagen-principal[data-producto="${productoId}"]`);
         if (img) {
             img.src = producto.imagenes[galeriaIndices[productoId]];
             img.dataset.indice = galeriaIndices[productoId];
         }
-        
         document.querySelectorAll(`.galeria-miniatura[data-producto="${productoId}"]`).forEach((mini, idx) => {
             mini.classList.toggle('active', idx === galeriaIndices[productoId]);
         });
@@ -1401,31 +1152,25 @@
     function seleccionarImagenGaleria(productoId, indice) {
         const producto = productos.find(p => p.id === productoId);
         if (!producto || !producto.imagenes) return;
-        
         galeriaIndices[productoId] = indice;
-        
         const img = document.querySelector(`img.galeria-imagen-principal[data-producto="${productoId}"]`);
         if (img) {
             img.src = producto.imagenes[indice];
             img.dataset.indice = indice;
         }
-        
         document.querySelectorAll(`.galeria-miniatura[data-producto="${productoId}"]`).forEach((mini, idx) => {
             mini.classList.toggle('active', idx === indice);
         });
     }
 
-    // Lightbox
     let lightboxProductoId = null;
     let lightboxIndice = 0;
 
     function abrirLightbox(productoId, indice) {
         const producto = productos.find(p => p.id === productoId);
         if (!producto || !producto.imagenes) return;
-        
         lightboxProductoId = productoId;
         lightboxIndice = indice;
-        
         let lightbox = document.getElementById('lightbox');
         if (!lightbox) {
             lightbox = document.createElement('div');
@@ -1441,18 +1186,15 @@
                 <div class="lightbox-contador"></div>
             `;
             document.body.appendChild(lightbox);
-            
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') cerrarLightbox();
                 if (e.key === 'ArrowLeft') navegarLightbox(-1);
                 if (e.key === 'ArrowRight') navegarLightbox(1);
             });
-            
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) cerrarLightbox();
             });
         }
-        
         actualizarLightbox();
         lightbox.classList.add('active');
     }
@@ -1465,7 +1207,6 @@
     function navegarLightbox(direccion) {
         const producto = productos.find(p => p.id === lightboxProductoId);
         if (!producto || !producto.imagenes) return;
-        
         lightboxIndice = (lightboxIndice + direccion + producto.imagenes.length) % producto.imagenes.length;
         actualizarLightbox();
     }
@@ -1473,14 +1214,11 @@
     function actualizarLightbox() {
         const producto = productos.find(p => p.id === lightboxProductoId);
         if (!producto || !producto.imagenes) return;
-        
         const lightbox = document.getElementById('lightbox');
         const img = lightbox.querySelector('.lightbox-imagen');
         const contador = lightbox.querySelector('.lightbox-contador');
-        
         img.src = producto.imagenes[lightboxIndice];
         img.alt = producto.nombre;
-        
         if (producto.imagenes.length > 1) {
             contador.textContent = `${lightboxIndice + 1} / ${producto.imagenes.length}`;
             lightbox.querySelector('.lightbox-flecha-izq').style.display = 'block';
@@ -1492,40 +1230,32 @@
         }
     }
 
-    // Carrito
     function agregarAlCarrito(id) {
-    const producto = productos.find(p => p.id === id);
-    
-    // Verificar stock
-    if (producto.stock <= 0) {
-        mostrarNotificacion('⚠️ Producto sin stock');
-        return;
-    }
-    
-    const itemExistente = carrito.find(item => item.id === id);
-    
-    if (itemExistente) {
-        // Verificar que no supere el stock
-        if (itemExistente.cantidad >= producto.stock) {
-            mostrarNotificacion(`⚠️ Stock máximo alcanzado (${producto.stock} unidades)`);
+        const producto = productos.find(p => p.id === id);
+        if (producto.stock <= 0) {
+            mostrarNotificacion('⚠️ Producto sin stock');
             return;
         }
-        itemExistente.cantidad++;
-    } else {
-        carrito.push({ ...producto, cantidad: 1 });
+        const itemExistente = carrito.find(item => item.id === id);
+        if (itemExistente) {
+            if (itemExistente.cantidad >= producto.stock) {
+                mostrarNotificacion(`⚠️ Stock máximo alcanzado (${producto.stock} unidades)`);
+                return;
+            }
+            itemExistente.cantidad++;
+        } else {
+            carrito.push({ ...producto, cantidad: 1 });
+        }
+        actualizarCarrito();
+        mostrarNotificacion('✅ Producto agregado al carrito');
     }
-    
-    actualizarCarrito();
-    mostrarNotificacion('✅ Producto agregado al carrito');
-}
 
     function actualizarCarrito() {
         const count = carrito.reduce((sum, item) => sum + item.cantidad, 0);
         document.getElementById('carritoCount').textContent = count;
-        
         const itemsContainer = document.getElementById('carritoItems');
         if (carrito.length === 0) {
-            itemsContainer.innerHTML = '<p style="text-align: center; padding: 2rem;">Tu carrito está vacío</p>';
+            itemsContainer.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">Tu carrito está vacío</p>';
         } else {
             itemsContainer.innerHTML = carrito.map(item => `
                 <div class="carrito-item">
@@ -1535,40 +1265,34 @@
                     </div>
                     <div class="carrito-item-acciones">
                         <button class="btn-cantidad" onclick="cambiarCantidad(${item.id}, -1)">-</button>
-                        <span style="font-weight: bold;">${item.cantidad}</span>
+                        <span style="font-weight: bold; color: #1a1a2e;">${item.cantidad}</span>
                         <button class="btn-cantidad" onclick="cambiarCantidad(${item.id}, 1)">+</button>
                         <button class="btn-cantidad" onclick="eliminarDelCarrito(${item.id})" style="background: #ff3838;">🗑️</button>
                     </div>
                 </div>
             `).join('');
         }
-        
         const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
         document.getElementById('carritoTotal').textContent = total.toLocaleString('es-AR');
     }
 
-function cambiarCantidad(id, cambio) {
-    const item = carrito.find(i => i.id === id);
-    const producto = productos.find(p => p.id === id);
-    
-    if (item) {
-        const nuevaCantidad = item.cantidad + cambio;
-        
-        // Verificar stock al aumentar
-        if (cambio > 0 && nuevaCantidad > producto.stock) {
-            mostrarNotificacion(`⚠️ Stock máximo: ${producto.stock} unidades`);
-            return;
-        }
-        
-        item.cantidad = nuevaCantidad;
-        
-        if (item.cantidad <= 0) {
-            eliminarDelCarrito(id);
-        } else {
-            actualizarCarrito();
+    function cambiarCantidad(id, cambio) {
+        const item = carrito.find(i => i.id === id);
+        const producto = productos.find(p => p.id === id);
+        if (item) {
+            const nuevaCantidad = item.cantidad + cambio;
+            if (cambio > 0 && nuevaCantidad > producto.stock) {
+                mostrarNotificacion(`⚠️ Stock máximo: ${producto.stock} unidades`);
+                return;
+            }
+            item.cantidad = nuevaCantidad;
+            if (item.cantidad <= 0) {
+                eliminarDelCarrito(id);
+            } else {
+                actualizarCarrito();
+            }
         }
     }
-}
 
     function eliminarDelCarrito(id) {
         carrito = carrito.filter(item => item.id !== id);
@@ -1579,15 +1303,12 @@ function cambiarCantidad(id, cambio) {
         document.getElementById('carritoModal').classList.toggle('active');
     }
 
-    // Pagar con Mercado Pago
     async function pagarMercadoPago() {
         if (carrito.length === 0) {
             alert('Tu carrito está vacío');
             return;
         }
-        
         mostrarNotificacion('Creando pago seguro...');
-        
         try {
             const items = carrito.map(item => ({
                 title: item.nombre,
@@ -1596,42 +1317,27 @@ function cambiarCantidad(id, cambio) {
                 unit_price: item.precio,
                 currency_id: 'ARS'
             }));
-            
-            console.log('Llamando a la función de Netlify...');
-            
             const response = await fetch('/.netlify/functions/crear-pago', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ items })
             });
-            
-            console.log('Respuesta recibida:', response.status);
-            
             const data = await response.json();
-            console.log('Data:', data);
-            
             if (data.success && data.init_point) {
                 mostrarNotificacion('¡Redirigiendo a Mercado Pago!');
-                setTimeout(() => {
-                    window.location.href = data.init_point;
-                }, 500);
+                setTimeout(() => { window.location.href = data.init_point; }, 500);
             } else {
                 throw new Error(data.error || 'Error al crear el pago');
             }
-            
         } catch (error) {
             console.error('Error al crear pago:', error);
             alert('Hubo un problema al procesar el pago. Por favor intenta por WhatsApp.');
-            
             const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
             let mensaje = `¡Hola! Quiero pagar con Mercado Pago:%0A%0A`;
             carrito.forEach(item => {
                 mensaje += `• ${item.nombre} x${item.cantidad} - $${(item.precio * item.cantidad).toLocaleString('es-AR')}%0A`;
             });
             mensaje += `%0ATotal: $${total.toLocaleString('es-AR')}`;
-            
             window.open(`https://wa.me/541131721889?text=${mensaje}`, '_blank');
         }
     }
@@ -1641,22 +1347,19 @@ function cambiarCantidad(id, cambio) {
             alert('Tu carrito está vacío');
             return;
         }
-        
         let mensaje = '¡Hola! Quiero comprar los siguientes productos:%0A%0A';
         carrito.forEach(item => {
             mensaje += `• ${item.nombre} x${item.cantidad} - $${(item.precio * item.cantidad).toLocaleString('es-AR')}%0A`;
         });
-        
         const total = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
         mensaje += `%0ATotal: $${total.toLocaleString('es-AR')}`;
-        
         window.open(`https://wa.me/541131721889?text=${mensaje}`, '_blank');
     }
 
     function mostrarNotificacion(texto) {
         const notif = document.createElement('div');
         notif.textContent = texto;
-        notif.style.cssText = 'position: fixed; top: 100px; right: 30px; background: #10b981; color: white; padding: 1rem 2rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 3000; animation: fadeInUp 0.5s;';
+        notif.style.cssText = 'position: fixed; top: 100px; right: 30px; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 1rem 2rem; border-radius: 15px; box-shadow: 0 10px 40px rgba(16, 185, 129, 0.5); z-index: 50000; animation: fadeInUp 0.5s; border: 2px solid rgba(255, 215, 0, 0.3);';
         document.body.appendChild(notif);
         setTimeout(() => notif.remove(), 3000);
     }
@@ -1670,19 +1373,18 @@ function cambiarCantidad(id, cambio) {
     document.addEventListener('click', function(event) {
         const dropdown = document.getElementById('dropdownContacto');
         const navItem = event.target.closest('.nav-item');
-        
         if (!navItem && dropdown) {
             dropdown.classList.remove('active');
         }
     });
 
-    // Inicializar
     renderizarProductos();
     actualizarCarrito();
     </script>
 </body>
-
 </html>
+
+
 
 
 
