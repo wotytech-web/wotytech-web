@@ -1449,9 +1449,78 @@
         
     renderizarProductos();
     actualizarCarrito();
+
+function buscarProductos() {
+        const input = document.getElementById('buscadorProductos');
+        const filtro = input.value.toLowerCase().trim();
+        const btnLimpiar = document.getElementById('btnLimpiar');
+        const resultadosDiv = document.getElementById('resultadosBusqueda');
+        
+        if (filtro.length > 0) {
+            btnLimpiar.style.display = 'block';
+        } else {
+            btnLimpiar.style.display = 'none';
+            resultadosDiv.style.display = 'none';
+        }
+        
+        const cards = document.querySelectorAll('.producto-card');
+        let encontrados = 0;
+        
+        cards.forEach(card => {
+            const nombre = card.querySelector('h3').textContent.toLowerCase();
+            const categoria = card.querySelector('p').textContent.toLowerCase();
+            const precio = card.querySelector('.producto-precio').textContent.toLowerCase();
+            
+            if (nombre.includes(filtro) || categoria.includes(filtro) || precio.includes(filtro)) {
+                card.style.display = 'block';
+                card.style.animation = 'fadeInUp 0.5s ease-out';
+                encontrados++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        if (filtro.length > 0) {
+            resultadosDiv.style.display = 'block';
+            if (encontrados === 0) {
+                resultadosDiv.innerHTML = '❌ No se encontraron productos con "' + input.value + '"';
+                resultadosDiv.style.color = '#ff3838';
+            } else if (encontrados === 1) {
+                resultadosDiv.innerHTML = '✅ Se encontró ' + encontrados + ' producto';
+                resultadosDiv.style.color = '#10b981';
+            } else {
+                resultadosDiv.innerHTML = '✅ Se encontraron ' + encontrados + ' productos';
+                resultadosDiv.style.color = '#10b981';
+            }
+            
+            if (encontrados > 0) {
+                document.getElementById('productos').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    }
+
+    function limpiarBusqueda() {
+        const input = document.getElementById('buscadorProductos');
+        const btnLimpiar = document.getElementById('btnLimpiar');
+        const resultadosDiv = document.getElementById('resultadosBusqueda');
+        
+        input.value = '';
+        btnLimpiar.style.display = 'none';
+        resultadosDiv.style.display = 'none';
+        
+        const cards = document.querySelectorAll('.producto-card');
+        cards.forEach(card => {
+            card.style.display = 'block';
+        });
+        
+        mostrarNotificacion('🔄 Búsqueda limpiada');
+    }
+
+        
     </script>
 </body>
 </html>
+
 
 
 
