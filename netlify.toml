@@ -1,7 +1,99 @@
-[build]
-  functions = "netlify/functions"
+# ========================================
+# WOTYTECH - CONFIGURACIÓN NETLIFY
+# ========================================
 
+[build]
+  publish = "."
+  command = "echo 'No build needed - static site'"
+
+# ========================================
+# HEADERS DE SEGURIDAD
+# ========================================
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Protección XSS
+    X-XSS-Protection = "1; mode=block"
+    
+    # Prevenir clickjacking
+    X-Frame-Options = "DENY"
+    
+    # Prevenir MIME sniffing
+    X-Content-Type-Options = "nosniff"
+    
+    # Referrer Policy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Permissions Policy
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    
+    # HSTS - Forzar HTTPS
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    
+    # Content Security Policy
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' https://sdk.mercadopago.com 'unsafe-inline';
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      img-src 'self' https://i.ibb.co https: data:;
+      font-src 'self' https://fonts.gstatic.com;
+      connect-src 'self' https://api.mercadopago.com;
+      frame-src 'self' https://www.mercadopago.com;
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self';
+      frame-ancestors 'none';
+      upgrade-insecure-requests;
+    """
+
+# Headers específicos para archivos estáticos
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ========================================
+# REDIRECTS
+# ========================================
+
+# Redirigir www a non-www (opcional)
+[[redirects]]
+  from = "https://www.tudominio.com/*"
+  to = "https://tudominio.com/:splat"
+  status = 301
+  force = true
+
+# SPA fallback - todas las rutas a index.html
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# ========================================
+# CONFIGURACIÓN DE FORMULARIOS NETLIFY
+# ========================================
+
+# Los formularios se detectan automáticamente
+# Solo necesitás agregar: netlify data-netlify="true"
+# en tu <form> tag en el HTML
