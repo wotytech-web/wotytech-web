@@ -56,7 +56,7 @@ const productosRaw = [
     { 
         id: 6, 
         nombre: 'Notebook HP Spectre', 
-        precio: 420000, 
+        precio: 510000, 
         imagenes: ['https://i.ibb.co/vv4JjzqX/notebbokhp00.jpg', 'https://i.ibb.co/Ng920j6L/20221225-150938.jpg', 'https://i.ibb.co/Mystj531/20221225-151504.jpg', 'https://i.ibb.co/V040znpm/20221225-151557.jpg', 'https://i.ibb.co/v4fbdyG7/notebbokhp.jpg', 'https://i.ibb.co/jkL6J0jX/20221225-151917.jpg'], 
         categoria: 'Componentes', 
         esImagen: true, 
