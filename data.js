@@ -100,11 +100,11 @@ const productosRaw = [
     },
     { 
         id: 11, 
-        nombre: 'Esperando Stock', 
-        precio: 000, 
-        imagenes: ['😊'], 
+        nombre: 'Cargador Notebook Sony Vaio 19.5v, Original', 
+        precio: 25000, 
+        imagenes: ['https://i.ibb.co/b5psS2S7/20260120-170125.jpg'], 
         categoria: 'Periféricos', 
-        stock: 0 
+        stock: 3 
     },
     { 
         id: 12, 
