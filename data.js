@@ -58,7 +58,7 @@ const productosRaw = [
         nombre: 'Notebook HP Spectre', 
         precio: 510000, 
         imagenes: ['https://i.ibb.co/vv4JjzqX/notebbokhp00.jpg', 'https://i.ibb.co/Ng920j6L/20221225-150938.jpg', 'https://i.ibb.co/Mystj531/20221225-151504.jpg', 'https://i.ibb.co/V040znpm/20221225-151557.jpg', 'https://i.ibb.co/v4fbdyG7/notebbokhp.jpg', 'https://i.ibb.co/jkL6J0jX/20221225-151917.jpg'], 
-        categoria: 'Componentes', 
+        categoria: 'Notebook', 
         esImagen: true, 
         stock: 1 
     },
@@ -108,11 +108,11 @@ const productosRaw = [
     },
     { 
         id: 12, 
-        nombre: 'Esperando Stock', 
-        precio: 000, 
-        imagenes: ['😊'], 
-        categoria: 'Periféricos', 
-        stock: 0 
+        nombre: 'Lenovo Thinkpad E14 - Intel Core I5 1135g7 Negro', 
+        precio: 1000000, 
+        imagenes: ['https://i.ibb.co/1tvkLH1G/Notelenovo1.jpg', 'https://i.ibb.co/ZRXLryHh/Notelenovo2.jpg', 'https://i.ibb.co/chf5Q7wg/Notelenovo3.jpg'], 
+        categoria: 'Notebook', 
+        stock: 1 
     }
 ];
 
