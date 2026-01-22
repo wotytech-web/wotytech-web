@@ -109,7 +109,7 @@ const productosRaw = [
     { 
         id: 12, 
         nombre: 'Lenovo Thinkpad E14 - Intel Core I5 1135g7 Negro', 
-        precio: 1000000, 
+        precio: 999000, 
         imagenes: ['https://i.ibb.co/1tvkLH1G/Notelenovo1.jpg', 'https://i.ibb.co/ZRXLryHh/Notelenovo2.jpg', 'https://i.ibb.co/chf5Q7wg/Notelenovo3.jpg'], 
         categoria: 'Notebook', 
         stock: 1 
