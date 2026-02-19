@@ -166,7 +166,7 @@ const juegosRaw = [
             'https://i.ibb.co/0VF1ycRF/keen42.jpg',
             'https://i.ibb.co/VpkQMhtv/keen43.jpg'
         ],
-        linkDescarga: '#'
+        linkDescarga: 'https://drive.google.com/file/d/1O5KMDuMIH2Vs0vw5M_TuVR8Yi2jSiFJP/view?usp=sharing'
     },
     {
         id: 1004,
@@ -182,7 +182,7 @@ const juegosRaw = [
             'https://i.ibb.co/2YFg0kW0/Prehis012.jpg',
             'https://i.ibb.co/XxhgB1bW/Prehis022.jpg'
         ],
-        linkDescarga: '#'
+        linkDescarga: 'https://drive.google.com/file/d/1Pkbs7rKvj9Szw38Zp4juk8w3EhFop-A6/view?usp=sharing'
     },
     {
         id: 1005,
@@ -198,7 +198,7 @@ const juegosRaw = [
             'https://i.ibb.co/JWgjRHPp/doom22.jpg',
             'https://i.ibb.co/99HJtzYz/doom23.jpg'
         ],
-        linkDescarga: '#'
+        linkDescarga: 'https://drive.google.com/file/d/1AP-fyhHFBADpw0sYY_1iRn1O9-bCk4tt/view?usp=sharing'
     },
     {
         id: 1006,
@@ -214,7 +214,7 @@ const juegosRaw = [
             'https://i.ibb.co/DPYsDrFf/indy32.jpg',
             'https://i.ibb.co/FbsgLyPy/indy33.jpg'
         ],
-        linkDescarga: '#'
+        linkDescarga: 'https://drive.google.com/file/d/16JRWSeUMwt4khtwZ-d94orws-rncHPXD/view?usp=sharing'
     }
 ];
 
